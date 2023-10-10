@@ -900,3 +900,44 @@ Processing by Api::V1::PropertiesController#index as */*
 Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.8ms | Allocations: 1005)
 
 
+Started GET "/api/v1/properties/" for 127.0.0.1 at 2023-10-10 12:47:29 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PropertiesController#index as */*
+  Parameters: {"rent_value"=>"4500", "bedrooms"=>"", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"", "description"=>"just a house", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"4500", "bedrooms"=>"", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"", "description"=>"just a house", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/api/v1/properties_controller.rb:4:in `index'
+Completed 200 OK in 96ms (Views: 79.2ms | ActiveRecord: 5.0ms | Allocations: 27470)
+
+
+Started POST "/api/v1/properties/" for 127.0.0.1 at 2023-10-10 12:47:41 -0500
+Processing by Api::V1::PropertiesController#create as */*
+  Parameters: {"rent_value"=>"4500", "bedrooms"=>"", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"", "description"=>"just a house", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"4500", "bedrooms"=>"", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"", "description"=>"just a house", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 2299)
+
+
+Started POST "/api/v1/properties/" for 127.0.0.1 at 2023-10-10 12:50:20 -0500
+Processing by Api::V1::PropertiesController#create as */*
+  Parameters: {"rent_value"=>"4500", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"4500", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1895)
+
+
+Started POST "/api/v1/properties/" for 127.0.0.1 at 2023-10-10 12:50:30 -0500
+Processing by Api::V1::PropertiesController#create as */*
+  Parameters: {"rent_value"=>"4500", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"4500", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/properties_controller.rb:35:in `create'
+  [1m[36mProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "user_id", "is_active", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4500], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["user_id", 1], ["is_active", true], ["created_at", "2023-10-10 17:50:30.033317"], ["updated_at", "2023-10-10 17:50:30.033317"]]
+  ↳ app/controllers/api/v1/properties_controller.rb:35:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/properties_controller.rb:35:in `create'
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 4.3ms | Allocations: 4258)
+
+
+Started GET "/api/v1/properties/" for 127.0.0.1 at 2023-10-10 12:51:11 -0500
+Processing by Api::V1::PropertiesController#index as */*
+  Parameters: {"rent_value"=>"4500", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"4500", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+  [1m[36mProperty Load (0.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/api/v1/properties_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.7ms | Allocations: 918)
+
+
