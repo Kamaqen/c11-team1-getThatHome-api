@@ -1,3 +1,3 @@
 class Property < ApplicationRecord
-  has_one_attached :image
+  validates :property_type, :address, :bedrooms, :bathrooms, :area, :image, presence: true
 end

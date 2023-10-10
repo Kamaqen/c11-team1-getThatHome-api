@@ -6,6 +6,7 @@ class CreateProperties < ActiveRecord::Migration[7.1]
       t.integer :bathrooms
       t.string :property_type
       t.string :contract_type
+      t.string :image
       t.text :description
       t.string :address
       t.boolean :pet_friendly
