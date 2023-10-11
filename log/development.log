@@ -1298,3 +1298,63 @@ Processing by PropertiesController#index as */*
 Completed 200 OK in 69ms (Views: 28.2ms | ActiveRecord: 22.2ms | Allocations: 10985)
 
 
+Started GET "/users" for 127.0.0.1 at 2023-10-10 19:34:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started POST "/users" for 127.0.0.1 at 2023-10-10 19:35:22 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"dante@mail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007f610c0a2f48>, params: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"email"=>"dante@mail.com"}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (3.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "dante@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["created_at", "2023-10-11 00:35:22.763463"], ["updated_at", "2023-10-11 00:35:22.763463"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (16.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 201 Created in 332ms (Views: 1.1ms | ActiveRecord: 25.4ms | Allocations: 15204)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 19:35:57 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"8999", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"8999", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:35:in `create'
+  [1m[36mProperty Create (1.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "user_id", "is_active", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 8999], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["user_id", 1], ["is_active", true], ["created_at", "2023-10-11 00:35:57.878251"], ["updated_at", "2023-10-11 00:35:57.878251"]]
+  ↳ app/controllers/properties_controller.rb:35:in `create'
+  [1m[36mTRANSACTION (7.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:35:in `create'
+Completed 200 OK in 104ms (Views: 0.6ms | ActiveRecord: 13.6ms | Allocations: 25162)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 19:36:26 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 00:36:26.858369"], ["id", 3]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (15.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 304ms (Views: 0.3ms | ActiveRecord: 17.5ms | Allocations: 3233)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 19:36:35 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:35:in `create'
+  [1m[36mProperty Create (35.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "user_id", "is_active", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 111111], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["user_id", 1], ["is_active", true], ["created_at", "2023-10-11 00:36:36.058527"], ["updated_at", "2023-10-11 00:36:36.058527"]]
+  ↳ app/controllers/properties_controller.rb:35:in `create'
+  [1m[36mTRANSACTION (13.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:35:in `create'
+Completed 200 OK in 206ms (Views: 0.5ms | ActiveRecord: 50.2ms | Allocations: 4324)
+
+
