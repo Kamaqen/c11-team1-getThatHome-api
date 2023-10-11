@@ -3,7 +3,12 @@ class User < ApplicationRecord
   has_secure_token
 
   has_many :properties, dependent: :destroy
-  has_and_belongs_to_many :properties
+  has_many :properties, dependent: :destroy
+  has_and_belongs_to_many :properties,
+    join_table: 'users_properties',
+    class_name: 'Property',
+    foreign_key: 'user_id',
+    association_foreign_key: 'property_id'
 
   validates :email, uniqueness: true, 
                     presence: true, 
