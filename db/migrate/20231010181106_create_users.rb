@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :token
       t.string :name
       t.string :phone_number
-
+      t.integer :role
       t.timestamps
     end
     add_index :users, :token, unique: true

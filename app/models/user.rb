@@ -8,14 +8,16 @@ class User < ApplicationRecord
     class_name: 'Property',
     foreign_key: 'user_id',
     association_foreign_key: 'property_id'
+  validates :email, uniqueness: true, presence: true, 
+    format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
+  enum role: { landlord: 0, home_seeker: 1 }
 
-  validates :email, uniqueness: true, 
-                    presence: true, 
-                    format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
-
-  validates :name, :phone_number, presence: true
+  validates :name, :phone_number, :role, presence: true 
 
   def invalidate_token
     update(token: nil)
   end
 end
+
+
+
