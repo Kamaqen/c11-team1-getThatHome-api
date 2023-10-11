@@ -16,7 +16,8 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    property = Property.new(
+    Property.transaction do
+      @property = Property.new(
       rent_value: prop_params[:rent_value],
       bedrooms: prop_params[:bedrooms],
       bathrooms: prop_params[:bathrooms],
@@ -31,13 +32,16 @@ class PropertiesController < ApplicationController
       maintenance_price: prop_params[:maintenance_price],
       user_id: prop_params[:user_id],
       is_active: prop_params[:is_active],
-    )
-    if property.save
-      render json: property, status: 200
-    else 
+      )
+      @property.user = current_user
+
+      if @property.save
+        render json: @property, status: 200
+      else 
       render json: {
-        error: "Error Creating..."
-      }
+          errors: @property.errors.full_messages
+        }, status: :unprocessable_entity
+      end
     end
   end
 

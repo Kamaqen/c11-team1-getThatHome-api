@@ -1358,6 +1358,888 @@ Processing by PropertiesController#create as */*
 Completed 200 OK in 206ms (Views: 0.5ms | ActiveRecord: 50.2ms | Allocations: 4324)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (76.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (65.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (233.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (145.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (38.9ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (20.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231010181106)[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010152555);[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 00:54:36.825244', '2023-10-11 00:54:36.825249') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ad0476ef7b1be40b803a7d38f7b43c3092acca49', '2023-10-11 00:54:36.834226', '2023-10-11 00:54:36.834229') RETURNING "key"[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231010181106)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010152555);[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 00:54:36.964183', '2023-10-11 00:54:36.964189') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 00:54:36.973586' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ad0476ef7b1be40b803a7d38f7b43c3092acca49', '2023-10-11 00:54:36.979654', '2023-10-11 00:54:36.979662') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["created_at", "2023-10-11 00:54:37.384001"], ["updated_at", "2023-10-11 00:54:37.384001"]]
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (3.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["created_at", "2023-10-11 00:54:37.724553"], ["updated_at", "2023-10-11 00:54:37.724553"]]
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (53.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (71.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (289.7ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (232.8ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 00:54:46.296173', '2023-10-11 00:54:46.296177') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.9ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" bigint NOT NULL, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (26.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (40.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (115.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (170.3ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231010181106)[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010152555);[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 00:59:33.426778', '2023-10-11 00:59:33.426783') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ad0476ef7b1be40b803a7d38f7b43c3092acca49', '2023-10-11 00:59:33.432539', '2023-10-11 00:59:33.432544') RETURNING "key"[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231010181106)[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010152555);[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 00:59:33.505915', '2023-10-11 00:59:33.505918') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 00:59:33.509922' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ad0476ef7b1be40b803a7d38f7b43c3092acca49', '2023-10-11 00:59:33.513769', '2023-10-11 00:59:33.513772') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (17.8ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:07:40 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+Completed 401 Unauthorized in 48ms (Views: 0.3ms | ActiveRecord: 2.5ms | Allocations: 12292)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-10-10 20:08:07 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"dante@mail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007f6c40b446b0>, params: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"email"=>"dante@mail.com"}} }[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 500 Internal Server Error in 493ms (ActiveRecord: 10.3ms | Allocations: 17865)
+
+
+  
+NoMethodError (undefined method `name' for #<User id: nil, email: "dante@mail.com", password_digest: [FILTERED], token: [FILTERED], created_at: nil, updated_at: nil>):
+  
+app/controllers/users_controller.rb:8:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-10-10 20:08:42 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "name"=>"dante", "phone_number"=>"555555", "user"=>{"email"=>"dante@mail.com"}}
+[31mUnpermitted parameters: :phone_number, :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007f6c3d104608>, params: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "name"=>"dante", "phone_number"=>"555555", "controller"=>"users", "action"=>"create", "user"=>{"email"=>"dante@mail.com"}} }[0m
+Completed 500 Internal Server Error in 385ms (ActiveRecord: 0.0ms | Allocations: 785)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'name' for User.
+
+          raise UnknownAttributeError.new(self, k.to_s)
+          ^^^^^):
+  
+app/controllers/users_controller.rb:6:in `create'
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (28.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (37.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (213.4ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (182.8ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (21.3ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011005736)[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:09:01.314092', '2023-10-11 01:09:01.314099') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ce12497b6d2a138a585d7a5c9b75901fa642caf0', '2023-10-11 01:09:01.322492', '2023-10-11 01:09:01.322499') RETURNING "key"[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (12.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (21.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011005736)[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (18.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (21.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:09:01.471855', '2023-10-11 01:09:01.471859') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 01:09:01.499352' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (7.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ce12497b6d2a138a585d7a5c9b75901fa642caf0', '2023-10-11 01:09:01.505201', '2023-10-11 01:09:01.505208') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (5.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (72.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (51.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (240.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (216.9ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (23.1ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (13.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (8.4ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011005736)[0m
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (23.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:10:35.431887', '2023-10-11 01:10:35.431896') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (3.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ce12497b6d2a138a585d7a5c9b75901fa642caf0', '2023-10-11 01:10:35.442023', '2023-10-11 01:10:35.442029') RETURNING "key"[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (21.7ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (30.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (13.9ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (19.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011005736)[0m
+  [1m[35m (2.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (4.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:10:35.641580', '2023-10-11 01:10:35.641587') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (2.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 01:10:35.651784' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (6.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ce12497b6d2a138a585d7a5c9b75901fa642caf0', '2023-10-11 01:10:35.662187', '2023-10-11 01:10:35.662199') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (50.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (43.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (138.5ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (134.5ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (16.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (5.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:11:17.022079', '2023-10-11 01:11:17.022084') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (30.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.0ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (27.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (36.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (169.1ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (99.7ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (13.5ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011005736)[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:11:23.786559', '2023-10-11 01:11:23.786563') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'f2c732b42b9429563d8b9e31129c566ae33f6527', '2023-10-11 01:11:23.793104', '2023-10-11 01:11:23.793110') RETURNING "key"[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011005736)[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 01:11:23.878668', '2023-10-11 01:11:23.878672') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 01:11:23.882768' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'f2c732b42b9429563d8b9e31129c566ae33f6527', '2023-10-11 01:11:23.886878', '2023-10-11 01:11:23.886881') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["created_at", "2023-10-11 01:11:24.194835"], ["updated_at", "2023-10-11 01:11:24.194835"]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["created_at", "2023-10-11 01:11:24.430804"], ["updated_at", "2023-10-11 01:11:24.430804"]]
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/users" for 127.0.0.1 at 2023-10-10 20:11:43 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "name"=>"dante", "phone_number"=>"555555", "user"=>{"email"=>"dante@mail.com", "name"=>"dante", "phone_number"=>"555555"}}
+[31mUnpermitted parameters: :phone_number, :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007ff844af8220>, params: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "name"=>"dante", "phone_number"=>"555555", "controller"=>"users", "action"=>"create", "user"=>{"email"=>"dante@mail.com", "name"=>"dante", "phone_number"=>"555555"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 422 Unprocessable Entity in 341ms (Views: 2.8ms | ActiveRecord: 9.1ms | Allocations: 19901)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:12:52 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+Completed 401 Unauthorized in 5ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 1244)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-10-10 20:14:19 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "name"=>"dante", "phone_number"=>"555555", "user"=>{"email"=>"dante@mail.com", "name"=>"dante", "phone_number"=>"555555"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007ff844adde70>, params: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "name"=>"dante", "phone_number"=>"555555", "controller"=>"users", "action"=>"create", "user"=>{"email"=>"dante@mail.com", "name"=>"dante", "phone_number"=>"555555"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (6.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "dante@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "dante"], ["phone_number", "555555"], ["created_at", "2023-10-11 01:14:19.779302"], ["updated_at", "2023-10-11 01:14:19.779302"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (15.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 201 Created in 303ms (Views: 0.3ms | ActiveRecord: 28.0ms | Allocations: 7233)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:14:27 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dante@mail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:14:28.128681"], ["id", 3]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (16.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 438ms (Views: 0.3ms | ActiveRecord: 32.3ms | Allocations: 4459)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:14:45 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "user_id"=>"1", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "user_id"=>"1"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.6ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:4:in `index'
+Completed 200 OK in 34ms (Views: 18.5ms | ActiveRecord: 6.7ms | Allocations: 1854)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:15:35 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Completed 200 OK in 175ms (Views: 0.1ms | ActiveRecord: 3.0ms | Allocations: 22603)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:16:13 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 2549)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:16:36 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dante@mail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:16:36.294820"], ["id", 3]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 291ms (Views: 0.2ms | ActiveRecord: 16.2ms | Allocations: 3643)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:16:43 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"property"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:4:in `index'
+Completed 200 OK in 14ms (Views: 10.4ms | ActiveRecord: 1.0ms | Allocations: 1297)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:16:59 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 2427)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:17:52 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"property"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.9ms | Allocations: 1291)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:19:33 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Completed 422 Unprocessable Entity in 38ms (Views: 0.2ms | ActiveRecord: 6.7ms | Allocations: 13679)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:32:16 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Completed 500 Internal Server Error in 69ms (ActiveRecord: 9.0ms | Allocations: 15834)
+
+
+  
+NameError (undefined local variable or method `property' for #<PropertiesController:0x00000000013d80>
+
+      if property.save
+         ^^^^^^^^
+Did you mean?  @property):
+  
+app/controllers/properties_controller.rb:38:in `block in create'
+app/controllers/properties_controller.rb:19:in `create'
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:32:41 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:20:in `block in create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Create (3.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 111111], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["is_active", true], ["created_at", "2023-10-11 01:32:41.414973"], ["updated_at", "2023-10-11 01:32:41.414973"], ["user_id", 3]]
+  ↳ app/controllers/properties_controller.rb:38:in `block in create'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/properties_controller.rb:19:in `create'
+Completed 500 Internal Server Error in 108ms (ActiveRecord: 23.9ms | Allocations: 18273)
+
+
+  
+NameError (undefined local variable or method `property' for #<PropertiesController:0x000000000176b0>
+
+        render json: property, status: 200
+                     ^^^^^^^^
+Did you mean?  @property):
+  
+app/controllers/properties_controller.rb:39:in `block in create'
+app/controllers/properties_controller.rb:19:in `create'
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:33:06 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:20:in `block in create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Create (0.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 111111], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["is_active", true], ["created_at", "2023-10-11 01:33:06.515443"], ["updated_at", "2023-10-11 01:33:06.515443"], ["user_id", 3]]
+  ↳ app/controllers/properties_controller.rb:38:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:19:in `create'
+Completed 200 OK in 52ms (Views: 0.3ms | ActiveRecord: 11.2ms | Allocations: 15588)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:33:52 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"property"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 1.2ms | Allocations: 1523)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:35:44 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dante@mail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:35:45.080802"], ["id", 3]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (15.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 272ms (Views: 0.2ms | ActiveRecord: 19.3ms | Allocations: 4488)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-10-10 20:35:47 -0500
+Processing by SessionsController#destroy as */*
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 137)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-10-10 20:36:00 -0500
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:14:in `invalidate_token'
+  [1m[36mUser Exists? (18.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dante@mail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14:in `invalidate_token'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:36:00.645453"], ["id", 3]]
+  ↳ app/models/user.rb:14:in `invalidate_token'
+  [1m[36mTRANSACTION (20.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:14:in `invalidate_token'
+Completed 200 OK in 53ms (ActiveRecord: 40.3ms | Allocations: 3939)
+
+
+Started PATCH "/properties/2" for 127.0.0.1 at 2023-10-10 20:37:14 -0500
+Processing by PropertiesController#update as */*
+  Parameters: {"rent_value"=>"222222", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "id"=>"2", "property"=>{"rent_value"=>"222222", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 656)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:37:27 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"dante@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"dante@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dante@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dante@mail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:37:27.314938"], ["id", 3]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (10.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 275ms (Views: 0.2ms | ActiveRecord: 14.6ms | Allocations: 3479)
+
+
+Started PATCH "/properties/2" for 127.0.0.1 at 2023-10-10 20:37:34 -0500
+Processing by PropertiesController#update as */*
+  Parameters: {"rent_value"=>"222222", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "id"=>"2", "property"=>{"rent_value"=>"222222", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/properties_controller.rb:49:in `update'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1587)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:37:41 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"property"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 653)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:37:45 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"property"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.6ms | Allocations: 1382)
+
+
+Started DELETE "/properties/2" for 127.0.0.1 at 2023-10-10 20:38:36 -0500
+Processing by PropertiesController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/properties_controller.rb:76:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:78:in `destroy'
+  [1m[36mProperty Destroy (2.2ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/properties_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (17.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:78:in `destroy'
+Completed 200 OK in 29ms (Views: 0.2ms | ActiveRecord: 20.8ms | Allocations: 2786)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-10 20:38:41 -0500
+Processing by PropertiesController#index as */*
+  Parameters: {"property"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.8ms | Allocations: 1291)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:38:51 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 653)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:38:56 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:38:in `block in create'
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 111111], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["is_active", true], ["created_at", "2023-10-11 01:38:56.882895"], ["updated_at", "2023-10-11 01:38:56.882895"], ["user_id", 3]]
+  ↳ app/controllers/properties_controller.rb:38:in `block in create'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:19:in `create'
+Completed 200 OK in 26ms (Views: 0.5ms | ActiveRecord: 7.6ms | Allocations: 4725)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-10-10 20:39:03 -0500
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 659)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-10-10 20:39:08 -0500
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:14:in `invalidate_token'
+  [1m[36mUser Exists? (5.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "dante@mail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14:in `invalidate_token'
+  [1m[36mUser Update (3.1ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:39:08.053624"], ["id", 3]]
+  ↳ app/models/user.rb:14:in `invalidate_token'
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:14:in `invalidate_token'
+Completed 200 OK in 29ms (ActiveRecord: 16.5ms | Allocations: 3905)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-10-10 20:39:30 -0500
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"jorgejr@mail.com", "password"=>"[FILTERED]", "name"=>"jorge jr.", "phone_number"=>"666666", "user"=>{"email"=>"jorgejr@mail.com", "name"=>"jorge jr.", "phone_number"=>"666666"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007ff8437e57c8>, params: {"email"=>"jorgejr@mail.com", "password"=>"[FILTERED]", "name"=>"jorge jr.", "phone_number"=>"666666", "controller"=>"users", "action"=>"create", "user"=>{"email"=>"jorgejr@mail.com", "name"=>"jorge jr.", "phone_number"=>"666666"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jorgejr@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "jorgejr@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "jorge jr."], ["phone_number", "666666"], ["created_at", "2023-10-11 01:39:30.624804"], ["updated_at", "2023-10-11 01:39:30.624804"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (10.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 201 Created in 317ms (Views: 0.6ms | ActiveRecord: 12.3ms | Allocations: 3511)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-10 20:39:38 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"jorgejr@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"jorgejr@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jorgejr@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "jorgejr@mail.com"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 01:39:38.432596"], ["id", 4]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 276ms (Views: 0.1ms | ActiveRecord: 13.2ms | Allocations: 3537)
+
+
+Started POST "/properties" for 127.0.0.1 at 2023-10-10 20:39:49 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true", "property"=>{"rent_value"=>"111111", "bedrooms"=>"2", "bathrooms"=>"1", "property_type"=>"house", "contract_type"=>"rent", "image"=>"url_xd", "description"=>"", "address"=>"Avenue 123, Lima", "pet_friendly"=>"true", "area"=>"123 m", "property_price"=>"", "maintenance_price"=>"100", "is_active"=>"true"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:38:in `block in create'
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 111111], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "house"], ["contract_type", "rent"], ["image", "url_xd"], ["description", ""], ["address", "Avenue 123, Lima"], ["pet_friendly", true], ["area", "123 m"], ["property_price", nil], ["maintenance_price", 100], ["is_active", true], ["created_at", "2023-10-11 01:39:49.121584"], ["updated_at", "2023-10-11 01:39:49.121584"], ["user_id", 4]]
+  ↳ app/controllers/properties_controller.rb:38:in `block in create'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:19:in `create'
+Completed 200 OK in 19ms (Views: 0.5ms | ActiveRecord: 9.2ms | Allocations: 4720)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint)[0m
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (45.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (47.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (311.1ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (202.0ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (27.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (6.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 02:14:16.552495', '2023-10-11 02:14:16.552503') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (23.6ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (7.3ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+=======
 Started OPTIONS "//profile" for ::1 at 2023-10-10 21:47:57 -0500
   [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   
@@ -1469,5 +2351,3 @@ Processing by SessionsController#create as */*
   [1m[36mTRANSACTION (40.7ms)[0m  [1m[35mCOMMIT[0m
   ↳ app/controllers/sessions_controller.rb:7:in `create'
 Completed 200 OK in 407ms (Views: 0.2ms | ActiveRecord: 48.6ms | Allocations: 20864)
-
-
