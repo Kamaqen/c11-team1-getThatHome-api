@@ -11247,3 +11247,231 @@ Filter chain halted as :authorize rendered or redirected
 Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 224)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (55.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_developmen"[0m
+  [1m[35m (37.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (165.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_developmen" ENCODING = 'unicode'[0m
+  [1m[35m (87.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (31.6ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users_properties" CASCADE[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011020539)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 22:17:08.320386', '2023-10-11 22:17:08.320390') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (39.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '75effc7cef5ed1ac459f334c7b6fab043d5dd1b9', '2023-10-11 22:17:08.324559', '2023-10-11 22:17:08.324561') RETURNING "key"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users_properties" CASCADE[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011020539)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 22:17:08.468498', '2023-10-11 22:17:08.468501') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 22:17:08.471205' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '75effc7cef5ed1ac459f334c7b6fab043d5dd1b9', '2023-10-11 22:17:08.473155', '2023-10-11 22:17:08.473157') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (0.9ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["role", 0], ["created_at", "2023-10-11 22:17:08.885464"], ["updated_at", "2023-10-11 22:17:08.885464"]]
+  [1m[36mTRANSACTION (39.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["role", 1], ["created_at", "2023-10-11 22:17:09.198355"], ["updated_at", "2023-10-11 22:17:09.198355"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mary@koelpin.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "mary@koelpin.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Dorsey O'Keefe CPA"], ["phone_number", "(449) 608-1548"], ["role", 1], ["created_at", "2023-10-11 22:17:09.726209"], ["updated_at", "2023-10-11 22:17:09.726209"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alan@abshire.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "alan@abshire.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Christopher Hammes III"], ["phone_number", "(617) 808-2126 x066"], ["role", 1], ["created_at", "2023-10-11 22:17:09.997074"], ["updated_at", "2023-10-11 22:17:09.997074"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lakendra@beatty.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "lakendra@beatty.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Sen. Whitney Marks"], ["phone_number", "1-844-380-5376 x901"], ["role", 1], ["created_at", "2023-10-11 22:17:10.260843"], ["updated_at", "2023-10-11 22:17:10.260843"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "delora_willms@hickle.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "delora_willms@hickle.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Rev. Bart Lockman"], ["phone_number", "128.368.8301"], ["role", 1], ["created_at", "2023-10-11 22:17:10.596582"], ["updated_at", "2023-10-11 22:17:10.596582"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joannie@boyer.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "joannie@boyer.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Valentine Thompson"], ["phone_number", "1-298-490-8687"], ["role", 1], ["created_at", "2023-10-11 22:17:10.869611"], ["updated_at", "2023-10-11 22:17:10.869611"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "edward@weber.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "edward@weber.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Marna Lueilwitz"], ["phone_number", "960-247-1614 x614"], ["role", 0], ["created_at", "2023-10-11 22:17:11.137164"], ["updated_at", "2023-10-11 22:17:11.137164"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3278], ["bedrooms", 1], ["bathrooms", 3], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Et voluptatem autem porro."], ["address", "89484 Marquita Cliffs, Miltonburgh, IN 10822"], ["pet_friendly", true], ["area", "143"], ["property_price", 164359], ["maintenance_price", 832], ["is_active", false], ["created_at", "2023-10-11 22:17:11.210331"], ["updated_at", "2023-10-11 22:17:11.210331"], ["user_id", 8]]
+  [1m[36mTRANSACTION (40.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2110], ["bedrooms", 5], ["bathrooms", 3], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Earum doloremque ipsam facilis."], ["address", "Suite 727 207 Robt Vista, North Rosalva, OK 89587"], ["pet_friendly", false], ["area", "110"], ["property_price", 247149], ["maintenance_price", 789], ["is_active", true], ["created_at", "2023-10-11 22:17:11.259152"], ["updated_at", "2023-10-11 22:17:11.259152"], ["user_id", 8]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lyle@lockman.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "lyle@lockman.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Michelle Smith"], ["phone_number", "954.985.4089 x8462"], ["role", 0], ["created_at", "2023-10-11 22:17:11.529608"], ["updated_at", "2023-10-11 22:17:11.529608"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1520], ["bedrooms", 4], ["bathrooms", 2], ["property_type", 1], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Dicta aspernatur sint esse."], ["address", "9378 Connelly Light, New Oscarchester, OK 74861"], ["pet_friendly", false], ["area", "51"], ["property_price", 364123], ["maintenance_price", 362], ["is_active", false], ["created_at", "2023-10-11 22:17:11.535395"], ["updated_at", "2023-10-11 22:17:11.535395"], ["user_id", 9]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2243], ["bedrooms", 2], ["bathrooms", 1], ["property_type", 0], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Consequatur omnis amet reiciendis."], ["address", "3268 Howell Station, North Loraine, MS 26307-3226"], ["pet_friendly", false], ["area", "94"], ["property_price", 248230], ["maintenance_price", 825], ["is_active", false], ["created_at", "2023-10-11 22:17:11.540706"], ["updated_at", "2023-10-11 22:17:11.540706"], ["user_id", 9]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mose@fahey.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "mose@fahey.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Jessie Hartmann"], ["phone_number", "371-953-6221 x7969"], ["role", 0], ["created_at", "2023-10-11 22:17:11.797117"], ["updated_at", "2023-10-11 22:17:11.797117"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 901], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Excepturi ipsum amet est."], ["address", "1444 Hermiston Falls, Stokeschester, ND 65540"], ["pet_friendly", true], ["area", "60"], ["property_price", 344995], ["maintenance_price", 885], ["is_active", true], ["created_at", "2023-10-11 22:17:11.804219"], ["updated_at", "2023-10-11 22:17:11.804219"], ["user_id", 10]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3196], ["bedrooms", 1], ["bathrooms", 2], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Delectus asperiores eos vel."], ["address", "Apt. 266 85738 Bayer Rue, North Earle, CA 31002-8899"], ["pet_friendly", true], ["area", "51"], ["property_price", 102864], ["maintenance_price", 189], ["is_active", false], ["created_at", "2023-10-11 22:17:11.809583"], ["updated_at", "2023-10-11 22:17:11.809583"], ["user_id", 10]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "antonio_quigley@quitzon.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "antonio_quigley@quitzon.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Hilario Schaefer"], ["phone_number", "1-370-289-3806"], ["role", 0], ["created_at", "2023-10-11 22:17:12.066216"], ["updated_at", "2023-10-11 22:17:12.066216"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4935], ["bedrooms", 2], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Praesentium dolores laboriosam accusantium."], ["address", "7928 Murray Pike, Kreigermouth, AZ 15804-9501"], ["pet_friendly", true], ["area", "67"], ["property_price", 343521], ["maintenance_price", 848], ["is_active", false], ["created_at", "2023-10-11 22:17:12.071984"], ["updated_at", "2023-10-11 22:17:12.071984"], ["user_id", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1574], ["bedrooms", 3], ["bathrooms", 3], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quasi maxime voluptatem consectetur."], ["address", "Apt. 542 966 Hessel Alley, Smithborough, LA 18106"], ["pet_friendly", true], ["area", "170"], ["property_price", 208270], ["maintenance_price", 786], ["is_active", false], ["created_at", "2023-10-11 22:17:12.077805"], ["updated_at", "2023-10-11 22:17:12.077805"], ["user_id", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "naoma_heller@hudson.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "naoma_heller@hudson.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Harley Schowalter"], ["phone_number", "1-156-153-3537"], ["role", 0], ["created_at", "2023-10-11 22:17:12.336324"], ["updated_at", "2023-10-11 22:17:12.336324"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1113], ["bedrooms", 3], ["bathrooms", 2], ["property_type", 1], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Voluptatem quia ipsa atque."], ["address", "Apt. 208 33407 O'Connell Tunnel, South Evonland, CA 78196-0567"], ["pet_friendly", false], ["area", "113"], ["property_price", 278061], ["maintenance_price", 262], ["is_active", false], ["created_at", "2023-10-11 22:17:12.340696"], ["updated_at", "2023-10-11 22:17:12.340696"], ["user_id", 12]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4142], ["bedrooms", 4], ["bathrooms", 2], ["property_type", 0], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Sint amet minima architecto."], ["address", "1321 Clarence Pass, Dorseyside, NY 63014-3631"], ["pet_friendly", true], ["area", "59"], ["property_price", 307402], ["maintenance_price", 451], ["is_active", true], ["created_at", "2023-10-11 22:17:12.346259"], ["updated_at", "2023-10-11 22:17:12.346259"], ["user_id", 12]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/profile" for ::1 at 2023-10-11 17:17:27 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 45ms (Views: 0.2ms | ActiveRecord: 4.2ms | Allocations: 12625)
+
+
+Started GET "/profile" for ::1 at 2023-10-11 17:17:27 -0500
+Processing by UsersController#show as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 707)
+
+
+Started GET "/profile" for ::1 at 2023-10-11 17:17:28 -0500
+Processing by UsersController#show as */*
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 103)
+
+
+Started GET "/profile" for ::1 at 2023-10-11 17:17:28 -0500
+Processing by UsersController#show as */*
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 103)
+
+
+Started POST "/login" for ::1 at 2023-10-11 17:17:39 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"test@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@mail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 22:17:39.713540"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 292ms (Views: 0.2ms | ActiveRecord: 10.5ms | Allocations: 17921)
+
+
+Started GET "/logout" for ::1 at 2023-10-11 17:17:42 -0500
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:18:in `invalidate_token'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@mail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:18:in `invalidate_token'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 22:17:42.378287"], ["id", 1]]
+  ↳ app/models/user.rb:18:in `invalidate_token'
+  [1m[36mTRANSACTION (40.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:18:in `invalidate_token'
+Completed 200 OK in 49ms (ActiveRecord: 42.3ms | Allocations: 4009)
+
+
+Started POST "/login" for ::1 at 2023-10-11 17:17:49 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"test@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (12.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@mail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-11 22:17:49.397919"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 331ms (Views: 0.1ms | ActiveRecord: 15.0ms | Allocations: 3494)
+
+
