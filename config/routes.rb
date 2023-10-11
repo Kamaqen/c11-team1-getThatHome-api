@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get '/properties' => 'properties#index'
+
+  #Sessions
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
@@ -21,5 +23,6 @@ Rails.application.routes.draw do
   patch "/profile", to: "users#update"
 
   # Route for image uploads
+
   post '/upload_image' => 'images#upload'
 end
