@@ -93,6 +93,10 @@ GEM
       reline (>= 0.3.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.1.1)
       ruby2_keywords
     error_highlight (0.5.1)
@@ -213,6 +217,7 @@ DEPENDENCIES
   bootsnap
   cloudinary (~> 1.4)
   debug
+  dotenv-rails
   error_highlight (>= 0.4.0)
   pg (~> 1.1)
   puma (>= 5.0)

@@ -14,6 +14,8 @@ gem "puma", ">= 5.0"
 # Use cloudinary for image upload handling
 gem 'cloudinary', '~> 1.4'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
