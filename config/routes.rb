@@ -14,4 +14,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  # Users
+  resources :users, only: :create
+  get "/profile", to: "users#show"
+  patch "/profile", to: "users#update"
+
 end
