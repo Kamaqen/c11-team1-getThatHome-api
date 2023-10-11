@@ -4,6 +4,10 @@ require 'faker'
 Property.destroy_all
 User.destroy_all
 
+# Crear usuarios fijos
+User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555', role: 0)
+User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_number: '12334456', role: 1)
+
 5.times do
   user = User.create!(
     email: Faker::Internet.unique.email,
@@ -47,8 +51,5 @@ end
   end
 end
 
-# Crear usuarios adicionales
-User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555')
-User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_number: '12334456')
 
 puts 'Datos ficticios creados con éxito.'

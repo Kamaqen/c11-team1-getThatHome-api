@@ -17,16 +17,12 @@ default: &default
   encoding: unicode
   database: get_that_home_api_development
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["USERNAME"] %>
-  password:  <%= ENV["PASSWORD"] %>
-  host: localhost
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: get_that_home_api_development
+  database: get_that_home_api_developmen
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
