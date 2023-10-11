@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_secure_token
 
   has_many :properties, dependent: :destroy
+  has_and_belongs_to_many :properties
 
   validates :email, uniqueness: true, 
                     presence: true, 
