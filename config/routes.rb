@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get '/properties' => 'properties#index'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 

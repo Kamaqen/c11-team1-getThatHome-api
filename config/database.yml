@@ -17,8 +17,8 @@ default: &default
   encoding: unicode
   database: get_that_home_api_development
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: jhondoe
-  password: marzo,01
+  username: <%= ENV["USERNAME"] %>
+  password:  <%= ENV["PASSWORD"] %>
   host: localhost
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling

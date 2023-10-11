@@ -3489,3 +3489,986 @@ Completed 200 OK in 199ms (Views: 29.1ms | ActiveRecord: 0.0ms | Allocations: 48
   [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["created_at", "2023-10-11 12:40:05.842659"], ["updated_at", "2023-10-11 12:40:05.842659"]]
   [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2023-10-11 07:56:11 -0500
+  
+ActiveRecord::ConnectionNotEstablished (connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "george" does not exist
+):
+  
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:80:in `rescue in new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:68:in `new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:981:in `connect'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:993:in `reconnect'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:685:in `block in reconnect!'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:684:in `reconnect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:788:in `verify!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:795:in `connect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:997:in `block in with_raw_connection'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:996:in `with_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:1104:in `valid_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:619:in `get_database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:374:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:70:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:200:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:871:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:647:in `check_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:675:in `new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:720:in `checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:699:in `try_to_checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:657:in `acquire_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `checkout'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:501:in `block in with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:518:in `with_temporary_pool'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:500:in `with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:494:in `block in with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/migration.rb:771:in `pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:750:in `check_pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:642:in `block (2 levels) in call'
+activesupport (7.1.0) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (7.1.0) lib/active_record/migration.rb:647:in `block in call'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `synchronize'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.0) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.0) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.0) lib/active_support/broadcast_logger.rb:212:in `method_missing'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.1.0) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-10-11 07:56:14 -0500
+  
+ActiveRecord::ConnectionNotEstablished (connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "george" does not exist
+):
+  
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:80:in `rescue in new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:68:in `new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:981:in `connect'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:993:in `reconnect'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:685:in `block in reconnect!'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:684:in `reconnect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:788:in `verify!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:795:in `connect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:997:in `block in with_raw_connection'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:996:in `with_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:1104:in `valid_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:619:in `get_database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:374:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:70:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:200:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:871:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:647:in `check_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:675:in `new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:720:in `checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:699:in `try_to_checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:657:in `acquire_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `checkout'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:501:in `block in with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:518:in `with_temporary_pool'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:500:in `with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:494:in `block in with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/migration.rb:771:in `pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:750:in `check_pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:642:in `block (2 levels) in call'
+activesupport (7.1.0) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (7.1.0) lib/active_record/migration.rb:647:in `block in call'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `synchronize'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.0) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.0) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.0) lib/active_support/broadcast_logger.rb:212:in `method_missing'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.1.0) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2023-10-11 07:57:59 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.9ms | Allocations: 375)
+Completed 200 OK in 2358ms (Views: 31.5ms | ActiveRecord: 0.0ms | Allocations: 283090)
+
+
+Started GET "/" for 127.0.0.1 at 2023-10-11 08:01:11 -0500
+  
+ActiveRecord::DatabaseConnectionError (There is an issue connecting to your database with your username/password, username: ENV[USERNAME].
+
+Please check your database configuration to ensure the username/password are valid.
+):
+  
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:76:in `rescue in new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:68:in `new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:981:in `connect'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:993:in `reconnect'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:685:in `block in reconnect!'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:684:in `reconnect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:788:in `verify!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:795:in `connect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:997:in `block in with_raw_connection'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:996:in `with_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:1104:in `valid_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:619:in `get_database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:374:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:70:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:200:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:871:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:647:in `check_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:675:in `new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:720:in `checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:699:in `try_to_checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:657:in `acquire_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `checkout'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:501:in `block in with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:518:in `with_temporary_pool'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:500:in `with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:494:in `block in with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/migration.rb:771:in `pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:750:in `check_pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:642:in `block (2 levels) in call'
+activesupport (7.1.0) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (7.1.0) lib/active_record/migration.rb:647:in `block in call'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `synchronize'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.0) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.0) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.0) lib/active_support/broadcast_logger.rb:212:in `method_missing'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.1.0) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-10-11 08:01:14 -0500
+  
+ActiveRecord::DatabaseConnectionError (There is an issue connecting to your database with your username/password, username: ENV[USERNAME].
+
+Please check your database configuration to ensure the username/password are valid.
+):
+  
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:76:in `rescue in new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:68:in `new_client'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:981:in `connect'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:993:in `reconnect'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:685:in `block in reconnect!'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:684:in `reconnect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:788:in `verify!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:795:in `connect!'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:997:in `block in with_raw_connection'
+activesupport (7.1.0) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:996:in `with_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:1104:in `valid_raw_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:619:in `get_database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:374:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:70:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/schema_cache.rb:200:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract_adapter.rb:871:in `database_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/postgresql_adapter.rb:647:in `check_version'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:675:in `new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:720:in `checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:699:in `try_to_checkout_new_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:657:in `acquire_connection'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `checkout'
+activerecord (7.1.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:501:in `block in with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:518:in `with_temporary_pool'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:500:in `with_temporary_connection'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:494:in `block in with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `each'
+activerecord (7.1.0) lib/active_record/tasks/database_tasks.rb:493:in `with_temporary_connection_for_each'
+activerecord (7.1.0) lib/active_record/migration.rb:771:in `pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:750:in `check_pending_migrations'
+activerecord (7.1.0) lib/active_record/migration.rb:642:in `block (2 levels) in call'
+activesupport (7.1.0) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (7.1.0) lib/active_record/migration.rb:647:in `block in call'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `synchronize'
+activerecord (7.1.0) lib/active_record/migration.rb:639:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.0) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.0) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.0) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.0) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.0) lib/active_support/broadcast_logger.rb:212:in `method_missing'
+railties (7.1.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.0) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.0) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.1.0) lib/rails/engine.rb:529:in `call'
+puma (6.4.0) lib/puma/configuration.rb:272:in `call'
+puma (6.4.0) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.0) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.0) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.0) lib/puma/server.rb:443:in `process_client'
+puma (6.4.0) lib/puma/server.rb:241:in `block in run'
+puma (6.4.0) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2023-10-11 08:09:07 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.8ms | Allocations: 374)
+Completed 200 OK in 2379ms (Views: 31.7ms | ActiveRecord: 0.0ms | Allocations: 283087)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-10-11 08:09:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users/3" for 127.0.0.1 at 2023-10-11 08:09:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users/3"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-10-11 08:09:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/users/" for 127.0.0.1 at 2023-10-11 08:09:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/api/v1/users" for 127.0.0.1 at 2023-10-11 08:09:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/users"):
+  
+Started GET "/api/v1/users" for 127.0.0.1 at 2023-10-11 08:11:47 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/users"):
+  
+Started GET "/api/v1/properties" for 127.0.0.1 at 2023-10-11 08:12:03 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/properties"):
+  
+Started GET "/api/v1/properties" for 127.0.0.1 at 2023-10-11 08:14:18 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/properties"):
+  
+Started GET "/properties" for 127.0.0.1 at 2023-10-11 08:14:26 -0500
+Processing by PropertiesController#index as HTML
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 312)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.7ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 13]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 13]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 13]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 13]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 13]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 13]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 13]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 13]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 13]]
+  [1m[36mUser Destroy (0.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 13]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (33.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (29.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (118.1ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (134.9ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (67.3ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (19.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users_properties" CASCADE[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011020539)[0m
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 13:59:34.015728', '2023-10-11 13:59:34.015731') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '8ae1efa7c1801d26263b0996a5ab1eab2088d43c', '2023-10-11 13:59:34.028316', '2023-10-11 13:59:34.028318') RETURNING "key"[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users_properties" CASCADE[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011020539)[0m
+  [1m[35m (3.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 13:59:34.220708', '2023-10-11 13:59:34.220712') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 13:59:34.231843' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '8ae1efa7c1801d26263b0996a5ab1eab2088d43c', '2023-10-11 13:59:34.237558', '2023-10-11 13:59:34.237560') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "shakia.durgan@rohan-towne.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "shakia.durgan@rohan-towne.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Tarsha D'Amore"], ["phone_number", "943.180.4132"], ["created_at", "2023-10-11 13:59:37.285951"], ["updated_at", "2023-10-11 13:59:37.285951"]]
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 984], ["bedrooms", 3], ["bathrooms", 2], ["property_type", "repellat"], ["contract_type", "nam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Unde possimus quasi corrupti."], ["address", "Suite 264 67768 Price Via, Miguelside, MA 48304"], ["pet_friendly", false], ["area", "181"], ["property_price", 443069], ["maintenance_price", 376], ["is_active", false], ["created_at", "2023-10-11 13:59:37.417800"], ["updated_at", "2023-10-11 13:59:37.417800"], ["user_id", 1]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3893], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "beatae"], ["contract_type", "quisquam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Illum libero asperiores sed."], ["address", "1848 Ullrich Villages, Annemariemouth, UT 30282-5713"], ["pet_friendly", true], ["area", "116"], ["property_price", 73723], ["maintenance_price", 302], ["is_active", false], ["created_at", "2023-10-11 13:59:37.431433"], ["updated_at", "2023-10-11 13:59:37.431433"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2445], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "facilis"], ["contract_type", "sint"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Laborum numquam veniam inventore."], ["address", "Suite 564 445 Koch Prairie, Rodriguezland, WV 11872"], ["pet_friendly", false], ["area", "135"], ["property_price", 453583], ["maintenance_price", 146], ["is_active", true], ["created_at", "2023-10-11 13:59:37.440121"], ["updated_at", "2023-10-11 13:59:37.440121"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3191], ["bedrooms", 2], ["bathrooms", 3], ["property_type", "fuga"], ["contract_type", "reiciendis"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Illum id sequi sit."], ["address", "8835 Chad Ferry, Kandacehaven, NM 72573"], ["pet_friendly", false], ["area", "175"], ["property_price", 70515], ["maintenance_price", 608], ["is_active", true], ["created_at", "2023-10-11 13:59:37.448916"], ["updated_at", "2023-10-11 13:59:37.448916"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2565], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "dolorum"], ["contract_type", "quaerat"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Et non dolorem culpa."], ["address", "688 Cummings Stream, Maxfort, MS 57765-1747"], ["pet_friendly", false], ["area", "57"], ["property_price", 464279], ["maintenance_price", 984], ["is_active", true], ["created_at", "2023-10-11 13:59:37.457616"], ["updated_at", "2023-10-11 13:59:37.457616"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "anja.klocko@skiles-bartell.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "anja.klocko@skiles-bartell.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Kenneth Emard"], ["phone_number", "1-882-904-1465 x740"], ["created_at", "2023-10-11 13:59:37.660917"], ["updated_at", "2023-10-11 13:59:37.660917"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2466], ["bedrooms", 5], ["bathrooms", 3], ["property_type", "culpa"], ["contract_type", "ab"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Vitae provident iure laboriosam."], ["address", "64069 Gerlach Plain, South Genevievebury, NJ 64397-7747"], ["pet_friendly", false], ["area", "182"], ["property_price", 371919], ["maintenance_price", 566], ["is_active", false], ["created_at", "2023-10-11 13:59:37.672706"], ["updated_at", "2023-10-11 13:59:37.672706"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 598], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "incidunt"], ["contract_type", "temporibus"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Necessitatibus explicabo vitae aut."], ["address", "17724 Wilkinson Village, Orentown, NH 64665-1015"], ["pet_friendly", true], ["area", "152"], ["property_price", 483665], ["maintenance_price", 259], ["is_active", true], ["created_at", "2023-10-11 13:59:37.681132"], ["updated_at", "2023-10-11 13:59:37.681132"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1109], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "qui"], ["contract_type", "mollitia"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Inventore repellendus veniam minus."], ["address", "51243 Clarence Via, Lake Henrietta, AL 76616-4278"], ["pet_friendly", true], ["area", "80"], ["property_price", 194311], ["maintenance_price", 596], ["is_active", false], ["created_at", "2023-10-11 13:59:37.690873"], ["updated_at", "2023-10-11 13:59:37.690873"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.6ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2245], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "molestiae"], ["contract_type", "architecto"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Eos est aut et."], ["address", "Apt. 120 6375 Jacobs Forges, Hermistonburgh, MT 81027-6116"], ["pet_friendly", false], ["area", "170"], ["property_price", 207003], ["maintenance_price", 849], ["is_active", false], ["created_at", "2023-10-11 13:59:37.699300"], ["updated_at", "2023-10-11 13:59:37.699300"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3988], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "esse"], ["contract_type", "accusantium"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quae corrupti ut aut."], ["address", "Apt. 819 40493 Eduardo Shore, Haagburgh, KY 34130-0710"], ["pet_friendly", false], ["area", "144"], ["property_price", 485666], ["maintenance_price", 823], ["is_active", true], ["created_at", "2023-10-11 13:59:37.708744"], ["updated_at", "2023-10-11 13:59:37.708744"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlita@rutherford.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "carlita@rutherford.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Osvaldo Lehner"], ["phone_number", "1-254-819-2876 x72873"], ["created_at", "2023-10-11 13:59:37.917984"], ["updated_at", "2023-10-11 13:59:37.917984"]]
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2707], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "sunt"], ["contract_type", "numquam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quidem odit omnis dicta."], ["address", "50243 Streich Club, West Jeffrey, IN 35732-0528"], ["pet_friendly", true], ["area", "91"], ["property_price", 253198], ["maintenance_price", 865], ["is_active", true], ["created_at", "2023-10-11 13:59:37.928765"], ["updated_at", "2023-10-11 13:59:37.928765"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1265], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "voluptas"], ["contract_type", "vel"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Qui laborum culpa dolore."], ["address", "3370 Cassidy Lake, North Jose, ME 51897"], ["pet_friendly", true], ["area", "64"], ["property_price", 209712], ["maintenance_price", 833], ["is_active", true], ["created_at", "2023-10-11 13:59:37.939499"], ["updated_at", "2023-10-11 13:59:37.939499"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3097], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "voluptas"], ["contract_type", "totam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Possimus nihil nihil doloremque."], ["address", "461 Friesen Dam, Mireillefort, ND 06735-7076"], ["pet_friendly", true], ["area", "105"], ["property_price", 302982], ["maintenance_price", 801], ["is_active", false], ["created_at", "2023-10-11 13:59:37.947947"], ["updated_at", "2023-10-11 13:59:37.947947"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.6ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1239], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "ut"], ["contract_type", "dolor"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Eos excepturi qui sint."], ["address", "Apt. 562 248 Harriette Branch, Mortonview, TN 89539-5988"], ["pet_friendly", false], ["area", "129"], ["property_price", 478745], ["maintenance_price", 214], ["is_active", true], ["created_at", "2023-10-11 13:59:37.956848"], ["updated_at", "2023-10-11 13:59:37.956848"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3370], ["bedrooms", 3], ["bathrooms", 3], ["property_type", "officiis"], ["contract_type", "maxime"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Aliquid enim et eveniet."], ["address", "84806 Mavis Mountain, Parkerland, NY 06442-2384"], ["pet_friendly", false], ["area", "118"], ["property_price", 436311], ["maintenance_price", 764], ["is_active", true], ["created_at", "2023-10-11 13:59:37.965661"], ["updated_at", "2023-10-11 13:59:37.965661"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sherwood@mertz.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "sherwood@mertz.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Francis Klocko"], ["phone_number", "236-131-3639 x10371"], ["created_at", "2023-10-11 13:59:38.173199"], ["updated_at", "2023-10-11 13:59:38.173199"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 944], ["bedrooms", 5], ["bathrooms", 3], ["property_type", "odit"], ["contract_type", "dolores"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Modi illo voluptatum odio."], ["address", "84307 Smitham Mills, Kossshire, AZ 27121-9294"], ["pet_friendly", true], ["area", "127"], ["property_price", 478527], ["maintenance_price", 903], ["is_active", true], ["created_at", "2023-10-11 13:59:38.184118"], ["updated_at", "2023-10-11 13:59:38.184118"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1691], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "minus"], ["contract_type", "est"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Aut nobis sed qui."], ["address", "695 Donnelly Underpass, Port Treva, HI 14546-0214"], ["pet_friendly", false], ["area", "82"], ["property_price", 51022], ["maintenance_price", 675], ["is_active", true], ["created_at", "2023-10-11 13:59:38.192661"], ["updated_at", "2023-10-11 13:59:38.192661"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 581], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "quos"], ["contract_type", "fugiat"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Tempora nisi inventore reprehenderit."], ["address", "2466 Nienow Oval, Jaymiemouth, OK 25999-8096"], ["pet_friendly", true], ["area", "131"], ["property_price", 117072], ["maintenance_price", 813], ["is_active", false], ["created_at", "2023-10-11 13:59:38.200234"], ["updated_at", "2023-10-11 13:59:38.200234"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3269], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "sed"], ["contract_type", "atque"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Laborum labore possimus tempore."], ["address", "233 Armstrong Dam, Konopelskiburgh, AL 19745"], ["pet_friendly", false], ["area", "162"], ["property_price", 327820], ["maintenance_price", 354], ["is_active", false], ["created_at", "2023-10-11 13:59:38.207434"], ["updated_at", "2023-10-11 13:59:38.207434"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2461], ["bedrooms", 3], ["bathrooms", 2], ["property_type", "pariatur"], ["contract_type", "rerum"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Provident molestiae voluptatem laborum."], ["address", "Apt. 976 14426 Crist Shore, West Dorie, OR 65938"], ["pet_friendly", true], ["area", "51"], ["property_price", 233767], ["maintenance_price", 779], ["is_active", true], ["created_at", "2023-10-11 13:59:38.217435"], ["updated_at", "2023-10-11 13:59:38.217435"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kasey_hirthe@streich.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "kasey_hirthe@streich.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Magaret Walker"], ["phone_number", "209.836.5065 x8460"], ["created_at", "2023-10-11 13:59:38.421111"], ["updated_at", "2023-10-11 13:59:38.421111"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2778], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "repellat"], ["contract_type", "minima"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Nesciunt in voluptas rerum."], ["address", "Suite 780 59879 Stroman Pass, Lake Shatown, ND 59730-6230"], ["pet_friendly", false], ["area", "142"], ["property_price", 129808], ["maintenance_price", 571], ["is_active", true], ["created_at", "2023-10-11 13:59:38.429594"], ["updated_at", "2023-10-11 13:59:38.429594"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1216], ["bedrooms", 5], ["bathrooms", 3], ["property_type", "quas"], ["contract_type", "laudantium"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Corporis soluta id veritatis."], ["address", "Apt. 603 114 Haag Ferry, Starktown, TX 60784-5901"], ["pet_friendly", false], ["area", "185"], ["property_price", 211714], ["maintenance_price", 687], ["is_active", false], ["created_at", "2023-10-11 13:59:38.437244"], ["updated_at", "2023-10-11 13:59:38.437244"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1171], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "ut"], ["contract_type", "possimus"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Incidunt ut et inventore."], ["address", "137 Ezequiel Lakes, Lake Leslie, MT 47141"], ["pet_friendly", true], ["area", "89"], ["property_price", 207150], ["maintenance_price", 139], ["is_active", true], ["created_at", "2023-10-11 13:59:38.448245"], ["updated_at", "2023-10-11 13:59:38.448245"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3455], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "facere"], ["contract_type", "illo"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Animi et labore quas."], ["address", "Suite 526 20651 Murray Vista, Yolondaport, NJ 96101-0088"], ["pet_friendly", false], ["area", "191"], ["property_price", 307512], ["maintenance_price", 268], ["is_active", false], ["created_at", "2023-10-11 13:59:38.456514"], ["updated_at", "2023-10-11 13:59:38.456514"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3757], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "dicta"], ["contract_type", "praesentium"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Voluptas omnis perferendis illum."], ["address", "39076 Murray Ranch, South Myeshaside, NE 59137-5573"], ["pet_friendly", false], ["area", "190"], ["property_price", 362163], ["maintenance_price", 298], ["is_active", true], ["created_at", "2023-10-11 13:59:38.465242"], ["updated_at", "2023-10-11 13:59:38.465242"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mickey_hartmann@gusikowski.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "mickey_hartmann@gusikowski.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Shena Zemlak"], ["phone_number", "(701) 707-2744 x5737"], ["created_at", "2023-10-11 13:59:38.669183"], ["updated_at", "2023-10-11 13:59:38.669183"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1033], ["bedrooms", 1], ["bathrooms", 1], ["property_type", "dolor"], ["contract_type", "voluptatem"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Optio enim voluptate aspernatur."], ["address", "Apt. 826 5208 Deanna Forge, South Thresa, OH 55670"], ["pet_friendly", false], ["area", "152"], ["property_price", 377128], ["maintenance_price", 553], ["is_active", true], ["created_at", "2023-10-11 13:59:38.680544"], ["updated_at", "2023-10-11 13:59:38.680544"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1923], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "accusamus"], ["contract_type", "maxime"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Iusto quisquam facilis praesentium."], ["address", "Suite 287 12887 Kunde Manors, Port Genestad, NH 53776"], ["pet_friendly", true], ["area", "158"], ["property_price", 96612], ["maintenance_price", 779], ["is_active", false], ["created_at", "2023-10-11 13:59:38.689104"], ["updated_at", "2023-10-11 13:59:38.689104"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3415], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "vero"], ["contract_type", "quo"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Dignissimos non voluptatem neque."], ["address", "Suite 734 715 Morissette Heights, New Katina, ND 81164-0342"], ["pet_friendly", false], ["area", "180"], ["property_price", 256265], ["maintenance_price", 935], ["is_active", false], ["created_at", "2023-10-11 13:59:38.696839"], ["updated_at", "2023-10-11 13:59:38.696839"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 943], ["bedrooms", 5], ["bathrooms", 3], ["property_type", "placeat"], ["contract_type", "sit"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Cum pariatur enim qui."], ["address", "88714 Jame Walks, North Shawndaburgh, AR 72245"], ["pet_friendly", true], ["area", "146"], ["property_price", 186660], ["maintenance_price", 290], ["is_active", false], ["created_at", "2023-10-11 13:59:38.707905"], ["updated_at", "2023-10-11 13:59:38.707905"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 826], ["bedrooms", 3], ["bathrooms", 2], ["property_type", "in"], ["contract_type", "a"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Libero et qui nesciunt."], ["address", "7448 Jerri Lakes, Hyechester, AK 17768-4457"], ["pet_friendly", false], ["area", "57"], ["property_price", 86804], ["maintenance_price", 869], ["is_active", true], ["created_at", "2023-10-11 13:59:38.716278"], ["updated_at", "2023-10-11 13:59:38.716278"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "porfirio.marvin@yundt.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "porfirio.marvin@yundt.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Ebony Reichel Jr."], ["phone_number", "1-644-401-6574 x4364"], ["created_at", "2023-10-11 13:59:38.921012"], ["updated_at", "2023-10-11 13:59:38.921012"]]
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4428], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "sed"], ["contract_type", "tempore"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Harum minima est mollitia."], ["address", "4183 Nolan Crossing, East Judiemouth, MT 35933"], ["pet_friendly", true], ["area", "179"], ["property_price", 80864], ["maintenance_price", 552], ["is_active", false], ["created_at", "2023-10-11 13:59:38.934249"], ["updated_at", "2023-10-11 13:59:38.934249"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1895], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "rerum"], ["contract_type", "animi"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Iure et occaecati nam."], ["address", "Suite 306 177 Petra Prairie, Kathyfort, HI 83338-2729"], ["pet_friendly", false], ["area", "59"], ["property_price", 475285], ["maintenance_price", 273], ["is_active", false], ["created_at", "2023-10-11 13:59:38.944806"], ["updated_at", "2023-10-11 13:59:38.944806"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2817], ["bedrooms", 5], ["bathrooms", 3], ["property_type", "et"], ["contract_type", "ad"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Sed nam rerum et."], ["address", "Apt. 629 685 Raynor Village, Treutelberg, HI 40041-3681"], ["pet_friendly", false], ["area", "96"], ["property_price", 480610], ["maintenance_price", 992], ["is_active", false], ["created_at", "2023-10-11 13:59:38.953506"], ["updated_at", "2023-10-11 13:59:38.953506"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3505], ["bedrooms", 5], ["bathrooms", 3], ["property_type", "voluptatem"], ["contract_type", "maiores"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Nisi quos est ab."], ["address", "70065 Suzi Plain, New Kathlynville, IL 24231-1905"], ["pet_friendly", true], ["area", "54"], ["property_price", 143704], ["maintenance_price", 808], ["is_active", false], ["created_at", "2023-10-11 13:59:38.961568"], ["updated_at", "2023-10-11 13:59:38.961568"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2345], ["bedrooms", 1], ["bathrooms", 2], ["property_type", "velit"], ["contract_type", "quibusdam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quae voluptatibus iusto laudantium."], ["address", "92819 Marita Landing, Zadafurt, LA 92847"], ["pet_friendly", false], ["area", "131"], ["property_price", 400032], ["maintenance_price", 958], ["is_active", false], ["created_at", "2023-10-11 13:59:38.971504"], ["updated_at", "2023-10-11 13:59:38.971504"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "greg@reichel-bernier.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "greg@reichel-bernier.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Keli Gutkowski Sr."], ["phone_number", "(158) 176-0660"], ["created_at", "2023-10-11 13:59:39.175867"], ["updated_at", "2023-10-11 13:59:39.175867"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2606], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "nisi"], ["contract_type", "architecto"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Facere magnam provident et."], ["address", "81264 Mavis Lights, West Jimmyview, TX 28221-0136"], ["pet_friendly", false], ["area", "152"], ["property_price", 96914], ["maintenance_price", 739], ["is_active", true], ["created_at", "2023-10-11 13:59:39.187227"], ["updated_at", "2023-10-11 13:59:39.187227"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2992], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "excepturi"], ["contract_type", "asperiores"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ea iure praesentium rem."], ["address", "5938 Kessler Unions, Sigridbury, NJ 24828-4192"], ["pet_friendly", true], ["area", "131"], ["property_price", 445383], ["maintenance_price", 242], ["is_active", true], ["created_at", "2023-10-11 13:59:39.196716"], ["updated_at", "2023-10-11 13:59:39.196716"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2728], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "fuga"], ["contract_type", "rerum"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Pariatur ipsam fugit enim."], ["address", "958 Barton Square, East Karlside, GA 32969"], ["pet_friendly", true], ["area", "101"], ["property_price", 319635], ["maintenance_price", 747], ["is_active", false], ["created_at", "2023-10-11 13:59:39.205887"], ["updated_at", "2023-10-11 13:59:39.205887"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (4.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2652], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "rerum"], ["contract_type", "dicta"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Consequuntur earum possimus sed."], ["address", "848 Josue Mountain, South Harris, WY 05514-5896"], ["pet_friendly", false], ["area", "50"], ["property_price", 52770], ["maintenance_price", 611], ["is_active", true], ["created_at", "2023-10-11 13:59:39.214938"], ["updated_at", "2023-10-11 13:59:39.214938"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4092], ["bedrooms", 3], ["bathrooms", 1], ["property_type", "architecto"], ["contract_type", "corporis"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Eligendi architecto hic earum."], ["address", "610 Ryan Center, Lake Michael, CO 12759"], ["pet_friendly", true], ["area", "71"], ["property_price", 140377], ["maintenance_price", 528], ["is_active", false], ["created_at", "2023-10-11 13:59:39.225102"], ["updated_at", "2023-10-11 13:59:39.225102"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "milda.roob@rath.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "milda.roob@rath.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Anton McClure IV"], ["phone_number", "409-201-2644 x38455"], ["created_at", "2023-10-11 13:59:39.441503"], ["updated_at", "2023-10-11 13:59:39.441503"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1850], ["bedrooms", 1], ["bathrooms", 2], ["property_type", "nemo"], ["contract_type", "quo"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Cum dolorem ipsam et."], ["address", "Apt. 645 29195 Nienow Course, East Giannaside, MS 33769"], ["pet_friendly", false], ["area", "152"], ["property_price", 83315], ["maintenance_price", 287], ["is_active", false], ["created_at", "2023-10-11 13:59:39.447734"], ["updated_at", "2023-10-11 13:59:39.447734"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4585], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "id"], ["contract_type", "facere"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Dolore sit laborum dignissimos."], ["address", "833 Von Track, East Karolhaven, NC 78849-9396"], ["pet_friendly", false], ["area", "71"], ["property_price", 490739], ["maintenance_price", 892], ["is_active", true], ["created_at", "2023-10-11 13:59:39.455295"], ["updated_at", "2023-10-11 13:59:39.455295"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (5.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 940], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "sed"], ["contract_type", "repellendus"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Vitae aliquam tempore voluptatem."], ["address", "805 Leannon Divide, New Maggieberg, CO 17643-1033"], ["pet_friendly", true], ["area", "125"], ["property_price", 84227], ["maintenance_price", 704], ["is_active", false], ["created_at", "2023-10-11 13:59:39.465877"], ["updated_at", "2023-10-11 13:59:39.465877"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1605], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "repellat"], ["contract_type", "temporibus"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Aut et nisi in."], ["address", "96840 Ortiz Highway, New Lettie, LA 58975"], ["pet_friendly", true], ["area", "144"], ["property_price", 221395], ["maintenance_price", 390], ["is_active", false], ["created_at", "2023-10-11 13:59:39.477889"], ["updated_at", "2023-10-11 13:59:39.477889"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1753], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "quae"], ["contract_type", "praesentium"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ut omnis dolorum maxime."], ["address", "66442 Marget Port, Bartellville, NC 22548-1121"], ["pet_friendly", true], ["area", "54"], ["property_price", 69014], ["maintenance_price", 485], ["is_active", false], ["created_at", "2023-10-11 13:59:39.487118"], ["updated_at", "2023-10-11 13:59:39.487118"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "darren_cummerata@wuckert-kohler.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "darren_cummerata@wuckert-kohler.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Prof. Doyle Fritsch"], ["phone_number", "478-429-4322 x575"], ["created_at", "2023-10-11 13:59:39.695251"], ["updated_at", "2023-10-11 13:59:39.695251"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3038], ["bedrooms", 3], ["bathrooms", 1], ["property_type", "nam"], ["contract_type", "numquam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Rem placeat nobis modi."], ["address", "15365 Smith Club, Verntown, NE 59985-4922"], ["pet_friendly", true], ["area", "86"], ["property_price", 302812], ["maintenance_price", 742], ["is_active", true], ["created_at", "2023-10-11 13:59:39.707366"], ["updated_at", "2023-10-11 13:59:39.707366"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1590], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "voluptatem"], ["contract_type", "rerum"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Nihil consectetur dolorem corporis."], ["address", "Suite 275 7166 Peter Ridge, Port Eldonmouth, AZ 09604"], ["pet_friendly", false], ["area", "192"], ["property_price", 498464], ["maintenance_price", 195], ["is_active", false], ["created_at", "2023-10-11 13:59:39.718369"], ["updated_at", "2023-10-11 13:59:39.718369"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4284], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "et"], ["contract_type", "et"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Tempora sed dignissimos molestias."], ["address", "Apt. 397 298 Euna Circle, Lake Kamilahtown, KS 86600"], ["pet_friendly", false], ["area", "108"], ["property_price", 425414], ["maintenance_price", 801], ["is_active", true], ["created_at", "2023-10-11 13:59:39.726394"], ["updated_at", "2023-10-11 13:59:39.726394"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1111], ["bedrooms", 3], ["bathrooms", 3], ["property_type", "fugit"], ["contract_type", "sit"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Sit accusantium mollitia voluptatem."], ["address", "Apt. 444 63156 Marylee Orchard, South Craig, TN 78514"], ["pet_friendly", false], ["area", "81"], ["property_price", 467638], ["maintenance_price", 688], ["is_active", true], ["created_at", "2023-10-11 13:59:39.735363"], ["updated_at", "2023-10-11 13:59:39.735363"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1634], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "iusto"], ["contract_type", "itaque"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Id aut ad enim."], ["address", "8525 Cassin Lock, Port Sherleybury, AZ 08317"], ["pet_friendly", false], ["area", "169"], ["property_price", 388377], ["maintenance_price", 113], ["is_active", true], ["created_at", "2023-10-11 13:59:39.744752"], ["updated_at", "2023-10-11 13:59:39.744752"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["created_at", "2023-10-11 13:59:39.949480"], ["updated_at", "2023-10-11 13:59:39.949480"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["created_at", "2023-10-11 13:59:40.155813"], ["updated_at", "2023-10-11 13:59:40.155813"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.7ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Destroy (0.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (49.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (49.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (248.5ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (172.8ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (30.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users_properties" CASCADE[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (31.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011020539)[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 14:08:19.941740', '2023-10-11 14:08:19.941742') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '8ae1efa7c1801d26263b0996a5ab1eab2088d43c', '2023-10-11 14:08:19.962604', '2023-10-11 14:08:19.962606') RETURNING "key"[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (30.2ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" character varying, "contract_type" character varying, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users_properties" CASCADE[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (23.9ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231011020539)[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (26.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-11 14:08:20.182059', '2023-10-11 14:08:20.182061') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.8ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-11 14:08:20.191711' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '8ae1efa7c1801d26263b0996a5ab1eab2088d43c', '2023-10-11 14:08:20.197234', '2023-10-11 14:08:20.197236') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "dave@ferry-kreiger.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "dave@ferry-kreiger.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Prof. Zachery Gulgowski"], ["phone_number", "1-520-676-9534 x565"], ["created_at", "2023-10-11 14:08:23.307879"], ["updated_at", "2023-10-11 14:08:23.307879"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4865], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "voluptatem"], ["contract_type", "enim"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Soluta nemo quam consequatur."], ["address", "3344 Ebert Passage, Rowemouth, OR 32298-3307"], ["pet_friendly", false], ["area", "181"], ["property_price", 437926], ["maintenance_price", 483], ["is_active", false], ["created_at", "2023-10-11 14:08:23.457350"], ["updated_at", "2023-10-11 14:08:23.457350"], ["user_id", 1]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3161], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "optio"], ["contract_type", "suscipit"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Nihil occaecati blanditiis fugit."], ["address", "55516 Simon Throughway, Lake Adrianfurt, SD 42647-9287"], ["pet_friendly", false], ["area", "148"], ["property_price", 303729], ["maintenance_price", 695], ["is_active", false], ["created_at", "2023-10-11 14:08:23.471278"], ["updated_at", "2023-10-11 14:08:23.471278"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3327], ["bedrooms", 3], ["bathrooms", 3], ["property_type", "reprehenderit"], ["contract_type", "quos"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Qui ex expedita perferendis."], ["address", "Suite 671 461 Stehr Summit, North Jcburgh, OK 70161"], ["pet_friendly", false], ["area", "76"], ["property_price", 386772], ["maintenance_price", 458], ["is_active", true], ["created_at", "2023-10-11 14:08:23.480429"], ["updated_at", "2023-10-11 14:08:23.480429"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4368], ["bedrooms", 2], ["bathrooms", 3], ["property_type", "incidunt"], ["contract_type", "harum"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Rerum similique architecto aut."], ["address", "41393 Renner Circles, East Janelmouth, TX 35689-6281"], ["pet_friendly", true], ["area", "155"], ["property_price", 431382], ["maintenance_price", 592], ["is_active", true], ["created_at", "2023-10-11 14:08:23.488440"], ["updated_at", "2023-10-11 14:08:23.488440"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1614], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "qui"], ["contract_type", "animi"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Est blanditiis aut aut."], ["address", "Suite 219 434 Hickle Spur, Rauport, WA 69703"], ["pet_friendly", true], ["area", "157"], ["property_price", 412124], ["maintenance_price", 468], ["is_active", false], ["created_at", "2023-10-11 14:08:23.496234"], ["updated_at", "2023-10-11 14:08:23.496234"], ["user_id", 1]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joey@bahringer.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "joey@bahringer.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Chelsea Tremblay"], ["phone_number", "331-531-6795"], ["created_at", "2023-10-11 14:08:23.710464"], ["updated_at", "2023-10-11 14:08:23.710464"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.6ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1614], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "omnis"], ["contract_type", "voluptatem"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Laboriosam sit omnis iste."], ["address", "Suite 463 2550 Jeffrey Unions, Morissetteport, NJ 28634-0759"], ["pet_friendly", false], ["area", "158"], ["property_price", 396348], ["maintenance_price", 953], ["is_active", false], ["created_at", "2023-10-11 14:08:23.725507"], ["updated_at", "2023-10-11 14:08:23.725507"], ["user_id", 2]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 673], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "facere"], ["contract_type", "quo"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Qui magnam quidem repellendus."], ["address", "Suite 717 3695 Rosenbaum Haven, Vivafurt, AK 21533-4857"], ["pet_friendly", false], ["area", "137"], ["property_price", 204802], ["maintenance_price", 983], ["is_active", true], ["created_at", "2023-10-11 14:08:23.734541"], ["updated_at", "2023-10-11 14:08:23.734541"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4048], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "minima"], ["contract_type", "aut"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Dolorem sit pariatur ab."], ["address", "41315 Russel Passage, Lucienfort, ND 64594"], ["pet_friendly", true], ["area", "181"], ["property_price", 74762], ["maintenance_price", 105], ["is_active", true], ["created_at", "2023-10-11 14:08:23.743908"], ["updated_at", "2023-10-11 14:08:23.743908"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1645], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "sed"], ["contract_type", "minima"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ullam quo numquam dolorum."], ["address", "888 Flora Ferry, West Trish, LA 82392"], ["pet_friendly", true], ["area", "102"], ["property_price", 135801], ["maintenance_price", 376], ["is_active", true], ["created_at", "2023-10-11 14:08:23.752440"], ["updated_at", "2023-10-11 14:08:23.752440"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3999], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "exercitationem"], ["contract_type", "est"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Harum nesciunt eum nihil."], ["address", "Suite 432 4409 Nicolas Inlet, East Dominicfurt, VT 08468"], ["pet_friendly", true], ["area", "90"], ["property_price", 53061], ["maintenance_price", 850], ["is_active", false], ["created_at", "2023-10-11 14:08:23.761141"], ["updated_at", "2023-10-11 14:08:23.761141"], ["user_id", 2]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "leisha_heller@pfannerstill.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "leisha_heller@pfannerstill.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Lala Pfeffer"], ["phone_number", "(451) 501-9270 x01622"], ["created_at", "2023-10-11 14:08:23.962656"], ["updated_at", "2023-10-11 14:08:23.962656"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4079], ["bedrooms", 3], ["bathrooms", 3], ["property_type", "velit"], ["contract_type", "expedita"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Maxime distinctio tempora modi."], ["address", "Apt. 688 15279 Hilpert Loop, Port Carey, OK 91756"], ["pet_friendly", false], ["area", "85"], ["property_price", 389248], ["maintenance_price", 127], ["is_active", true], ["created_at", "2023-10-11 14:08:23.972742"], ["updated_at", "2023-10-11 14:08:23.972742"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4478], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "amet"], ["contract_type", "perferendis"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Nihil odio est et."], ["address", "689 Jesse Keys, South Yolonda, IN 54725-9273"], ["pet_friendly", true], ["area", "159"], ["property_price", 220354], ["maintenance_price", 478], ["is_active", false], ["created_at", "2023-10-11 14:08:23.981326"], ["updated_at", "2023-10-11 14:08:23.981326"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1619], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "cum"], ["contract_type", "sed"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quasi quod dolor cupiditate."], ["address", "345 Nakisha Mountains, Carrolltown, TX 38187"], ["pet_friendly", true], ["area", "160"], ["property_price", 437894], ["maintenance_price", 601], ["is_active", true], ["created_at", "2023-10-11 14:08:23.990770"], ["updated_at", "2023-10-11 14:08:23.990770"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4352], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "qui"], ["contract_type", "veniam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Sunt culpa iste cumque."], ["address", "Apt. 137 9089 Schuppe Village, West Cierashire, UT 76092"], ["pet_friendly", false], ["area", "186"], ["property_price", 475411], ["maintenance_price", 502], ["is_active", false], ["created_at", "2023-10-11 14:08:23.998687"], ["updated_at", "2023-10-11 14:08:23.998687"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1648], ["bedrooms", 2], ["bathrooms", 3], ["property_type", "in"], ["contract_type", "molestiae"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ut tempore minus dolores."], ["address", "Suite 969 82418 Weimann Vista, Bartellmouth, NM 99663"], ["pet_friendly", true], ["area", "50"], ["property_price", 495611], ["maintenance_price", 183], ["is_active", true], ["created_at", "2023-10-11 14:08:24.007878"], ["updated_at", "2023-10-11 14:08:24.007878"], ["user_id", 3]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "daryl_beatty@streich.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "daryl_beatty@streich.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Gerry Cremin DO"], ["phone_number", "(835) 136-0662 x41968"], ["created_at", "2023-10-11 14:08:24.216520"], ["updated_at", "2023-10-11 14:08:24.216520"]]
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 4]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1967], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "nam"], ["contract_type", "sint"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quia voluptas aut ratione."], ["address", "134 Alfonzo Harbor, Kulasside, MD 56529"], ["pet_friendly", true], ["area", "120"], ["property_price", 138444], ["maintenance_price", 136], ["is_active", true], ["created_at", "2023-10-11 14:08:24.231513"], ["updated_at", "2023-10-11 14:08:24.231513"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2535], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "quae"], ["contract_type", "itaque"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Corporis velit nisi eos."], ["address", "7758 Block Field, Jesusshire, DE 24639"], ["pet_friendly", true], ["area", "65"], ["property_price", 417801], ["maintenance_price", 501], ["is_active", false], ["created_at", "2023-10-11 14:08:24.241164"], ["updated_at", "2023-10-11 14:08:24.241164"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 689], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "tenetur"], ["contract_type", "ea"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quibusdam vel nam in."], ["address", "Suite 679 424 Zoraida Trail, New Jimmy, NC 21723"], ["pet_friendly", false], ["area", "147"], ["property_price", 357356], ["maintenance_price", 930], ["is_active", true], ["created_at", "2023-10-11 14:08:24.249963"], ["updated_at", "2023-10-11 14:08:24.249963"], ["user_id", 4]]
+  [1m[36mTRANSACTION (20.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4436], ["bedrooms", 1], ["bathrooms", 1], ["property_type", "rerum"], ["contract_type", "quia"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Est cupiditate possimus et."], ["address", "Apt. 333 301 Schaden Isle, North Shakita, TX 95066-7268"], ["pet_friendly", true], ["area", "105"], ["property_price", 481863], ["maintenance_price", 599], ["is_active", false], ["created_at", "2023-10-11 14:08:24.278929"], ["updated_at", "2023-10-11 14:08:24.278929"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2711], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "atque"], ["contract_type", "iusto"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Similique suscipit et deleniti."], ["address", "2317 Akilah Extensions, West Floridafurt, OR 43351"], ["pet_friendly", true], ["area", "61"], ["property_price", 405116], ["maintenance_price", 647], ["is_active", false], ["created_at", "2023-10-11 14:08:24.287402"], ["updated_at", "2023-10-11 14:08:24.287402"], ["user_id", 4]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "willow.kiehn@bednar.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "willow.kiehn@bednar.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Archie Graham"], ["phone_number", "1-929-293-3944"], ["created_at", "2023-10-11 14:08:24.499676"], ["updated_at", "2023-10-11 14:08:24.499676"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 5]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.6ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 679], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "sit"], ["contract_type", "officiis"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Fuga quia ducimus qui."], ["address", "62349 Cliff Drive, Carissaburgh, MO 21101"], ["pet_friendly", true], ["area", "52"], ["property_price", 425769], ["maintenance_price", 401], ["is_active", false], ["created_at", "2023-10-11 14:08:24.513450"], ["updated_at", "2023-10-11 14:08:24.513450"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1582], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "ut"], ["contract_type", "et"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Distinctio at voluptas dolor."], ["address", "Apt. 718 83947 Doria River, Schummfurt, WY 27572"], ["pet_friendly", true], ["area", "104"], ["property_price", 285051], ["maintenance_price", 268], ["is_active", true], ["created_at", "2023-10-11 14:08:24.522333"], ["updated_at", "2023-10-11 14:08:24.522333"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1045], ["bedrooms", 4], ["bathrooms", 3], ["property_type", "qui"], ["contract_type", "est"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Deleniti harum quod accusamus."], ["address", "5909 Balistreri Ports, Larsonfurt, WI 76788"], ["pet_friendly", true], ["area", "114"], ["property_price", 157583], ["maintenance_price", 682], ["is_active", false], ["created_at", "2023-10-11 14:08:24.530743"], ["updated_at", "2023-10-11 14:08:24.530743"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2121], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "sint"], ["contract_type", "accusamus"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Placeat neque qui voluptatibus."], ["address", "Suite 640 2950 Glover Crest, Johnsville, VT 53723-7062"], ["pet_friendly", false], ["area", "97"], ["property_price", 337455], ["maintenance_price", 235], ["is_active", true], ["created_at", "2023-10-11 14:08:24.539712"], ["updated_at", "2023-10-11 14:08:24.539712"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4024], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "aperiam"], ["contract_type", "enim"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Voluptatum impedit dolorem fugiat."], ["address", "Apt. 511 114 Hyatt Centers, West Kirstenmouth, NC 27829-4869"], ["pet_friendly", false], ["area", "89"], ["property_price", 445507], ["maintenance_price", 209], ["is_active", false], ["created_at", "2023-10-11 14:08:24.548554"], ["updated_at", "2023-10-11 14:08:24.548554"], ["user_id", 5]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "zane@reinger.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "zane@reinger.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Del Considine"], ["phone_number", "(489) 113-8986 x34149"], ["created_at", "2023-10-11 14:08:24.749664"], ["updated_at", "2023-10-11 14:08:24.749664"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3722], ["bedrooms", 3], ["bathrooms", 2], ["property_type", "ut"], ["contract_type", "eligendi"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Qui ut quos veritatis."], ["address", "579 Zemlak Ford, North Jerry, OK 14643"], ["pet_friendly", false], ["area", "137"], ["property_price", 346237], ["maintenance_price", 817], ["is_active", true], ["created_at", "2023-10-11 14:08:24.764158"], ["updated_at", "2023-10-11 14:08:24.764158"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4120], ["bedrooms", 1], ["bathrooms", 2], ["property_type", "cumque"], ["contract_type", "facere"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Deleniti veritatis atque qui."], ["address", "Suite 632 805 Emelina Ports, Lake Lavenia, VT 03786-9825"], ["pet_friendly", true], ["area", "59"], ["property_price", 309838], ["maintenance_price", 498], ["is_active", true], ["created_at", "2023-10-11 14:08:24.772356"], ["updated_at", "2023-10-11 14:08:24.772356"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2558], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "voluptatibus"], ["contract_type", "deserunt"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Quidem est quia quam."], ["address", "Apt. 819 81760 James Fords, Port Renaldohaven, ND 11597-4859"], ["pet_friendly", false], ["area", "173"], ["property_price", 331126], ["maintenance_price", 777], ["is_active", true], ["created_at", "2023-10-11 14:08:24.780941"], ["updated_at", "2023-10-11 14:08:24.780941"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2776], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "et"], ["contract_type", "sequi"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Occaecati ea esse repellat."], ["address", "Apt. 746 760 Rowe Turnpike, Bartolettiport, IN 84337"], ["pet_friendly", false], ["area", "142"], ["property_price", 303364], ["maintenance_price", 858], ["is_active", true], ["created_at", "2023-10-11 14:08:24.789894"], ["updated_at", "2023-10-11 14:08:24.789894"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2291], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "consequuntur"], ["contract_type", "molestiae"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Omnis molestiae omnis et."], ["address", "Suite 378 185 Thurman Key, Zadaview, PA 74511"], ["pet_friendly", false], ["area", "50"], ["property_price", 294189], ["maintenance_price", 111], ["is_active", false], ["created_at", "2023-10-11 14:08:24.797950"], ["updated_at", "2023-10-11 14:08:24.797950"], ["user_id", 6]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "santana@sanford.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "santana@sanford.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Ashanti Greenfelder"], ["phone_number", "913-145-9173 x32530"], ["created_at", "2023-10-11 14:08:25.001704"], ["updated_at", "2023-10-11 14:08:25.001704"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 7]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1159], ["bedrooms", 2], ["bathrooms", 3], ["property_type", "sit"], ["contract_type", "aut"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Esse harum recusandae et."], ["address", "Apt. 803 430 Wynona Mountains, Owenberg, NY 65856"], ["pet_friendly", false], ["area", "79"], ["property_price", 71649], ["maintenance_price", 624], ["is_active", true], ["created_at", "2023-10-11 14:08:25.016289"], ["updated_at", "2023-10-11 14:08:25.016289"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4272], ["bedrooms", 3], ["bathrooms", 2], ["property_type", "natus"], ["contract_type", "eaque"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ab tenetur sed vero."], ["address", "Apt. 943 8921 Franklyn Valley, Runolfssonhaven, WI 53757-6397"], ["pet_friendly", false], ["area", "61"], ["property_price", 168384], ["maintenance_price", 795], ["is_active", true], ["created_at", "2023-10-11 14:08:25.024986"], ["updated_at", "2023-10-11 14:08:25.024986"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4850], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "voluptatibus"], ["contract_type", "nihil"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Rerum tenetur veritatis in."], ["address", "Apt. 964 4911 Nikolaus Drive, West Catrinaview, FL 16260"], ["pet_friendly", false], ["area", "70"], ["property_price", 184928], ["maintenance_price", 547], ["is_active", true], ["created_at", "2023-10-11 14:08:25.034480"], ["updated_at", "2023-10-11 14:08:25.034480"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4795], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "delectus"], ["contract_type", "hic"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Sunt sapiente ex saepe."], ["address", "Apt. 997 1881 Jerry Streets, South Arlenburgh, IN 59527-1184"], ["pet_friendly", true], ["area", "178"], ["property_price", 203983], ["maintenance_price", 467], ["is_active", false], ["created_at", "2023-10-11 14:08:25.042365"], ["updated_at", "2023-10-11 14:08:25.042365"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 601], ["bedrooms", 4], ["bathrooms", 2], ["property_type", "incidunt"], ["contract_type", "ut"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Reprehenderit non aut nihil."], ["address", "Suite 998 7311 Geoffrey Orchard, Barrowsburgh, GA 41311"], ["pet_friendly", false], ["area", "104"], ["property_price", 448461], ["maintenance_price", 849], ["is_active", false], ["created_at", "2023-10-11 14:08:25.052247"], ["updated_at", "2023-10-11 14:08:25.052247"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "maris@huel.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "maris@huel.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Donn Hane"], ["phone_number", "404.164.8920 x7670"], ["created_at", "2023-10-11 14:08:25.253464"], ["updated_at", "2023-10-11 14:08:25.253464"]]
+  [1m[36mTRANSACTION (7.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 8]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3997], ["bedrooms", 3], ["bathrooms", 2], ["property_type", "dolorum"], ["contract_type", "quod"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Qui sunt officiis quia."], ["address", "56827 Hickle Common, West Gailshire, AZ 51097-8980"], ["pet_friendly", false], ["area", "102"], ["property_price", 423864], ["maintenance_price", 878], ["is_active", true], ["created_at", "2023-10-11 14:08:25.268474"], ["updated_at", "2023-10-11 14:08:25.268474"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2590], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "dolorem"], ["contract_type", "unde"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Autem et sed soluta."], ["address", "4535 Dickens Brooks, Ritchiehaven, IL 84902-8746"], ["pet_friendly", true], ["area", "55"], ["property_price", 323378], ["maintenance_price", 504], ["is_active", true], ["created_at", "2023-10-11 14:08:25.278501"], ["updated_at", "2023-10-11 14:08:25.278501"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2547], ["bedrooms", 1], ["bathrooms", 1], ["property_type", "a"], ["contract_type", "ut"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Tempora id omnis voluptates."], ["address", "Apt. 744 708 Howe Ferry, North Octavia, TX 34123"], ["pet_friendly", true], ["area", "93"], ["property_price", 471863], ["maintenance_price", 839], ["is_active", true], ["created_at", "2023-10-11 14:08:25.286487"], ["updated_at", "2023-10-11 14:08:25.286487"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 757], ["bedrooms", 5], ["bathrooms", 1], ["property_type", "qui"], ["contract_type", "veniam"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Fuga sint eaque repudiandae."], ["address", "3978 Bruen Forge, Schmittfort, OK 08895"], ["pet_friendly", true], ["area", "150"], ["property_price", 474816], ["maintenance_price", 660], ["is_active", false], ["created_at", "2023-10-11 14:08:25.296612"], ["updated_at", "2023-10-11 14:08:25.296612"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3093], ["bedrooms", 2], ["bathrooms", 2], ["property_type", "aut"], ["contract_type", "culpa"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Harum molestiae doloribus consequatur."], ["address", "21435 Hosea Pines, North Trena, OK 55270"], ["pet_friendly", false], ["area", "117"], ["property_price", 167526], ["maintenance_price", 481], ["is_active", true], ["created_at", "2023-10-11 14:08:25.305178"], ["updated_at", "2023-10-11 14:08:25.305178"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jame@skiles-oconner.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "jame@skiles-oconner.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Destiny McCullough Esq."], ["phone_number", "728.043.2219"], ["created_at", "2023-10-11 14:08:25.513698"], ["updated_at", "2023-10-11 14:08:25.513698"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 9]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3229], ["bedrooms", 3], ["bathrooms", 3], ["property_type", "rerum"], ["contract_type", "facere"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Commodi qui fugit sint."], ["address", "Apt. 496 2678 Bogisich Forge, East Hye, CA 76670-9412"], ["pet_friendly", false], ["area", "84"], ["property_price", 117583], ["maintenance_price", 373], ["is_active", false], ["created_at", "2023-10-11 14:08:25.528281"], ["updated_at", "2023-10-11 14:08:25.528281"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 637], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "quo"], ["contract_type", "at"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Officia numquam voluptatem aperiam."], ["address", "7519 Rath Ford, North Lareebury, HI 08153-1815"], ["pet_friendly", true], ["area", "84"], ["property_price", 293459], ["maintenance_price", 830], ["is_active", true], ["created_at", "2023-10-11 14:08:25.537948"], ["updated_at", "2023-10-11 14:08:25.537948"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1652], ["bedrooms", 1], ["bathrooms", 3], ["property_type", "quasi"], ["contract_type", "ipsum"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Et esse ut fuga."], ["address", "Apt. 476 75285 Jacques Mews, Littleview, MI 28296"], ["pet_friendly", true], ["area", "191"], ["property_price", 333694], ["maintenance_price", 299], ["is_active", false], ["created_at", "2023-10-11 14:08:25.547211"], ["updated_at", "2023-10-11 14:08:25.547211"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 614], ["bedrooms", 4], ["bathrooms", 1], ["property_type", "quis"], ["contract_type", "ea"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Reprehenderit maxime eos nihil."], ["address", "6606 Clarine Oval, New Quentinland, ND 64760"], ["pet_friendly", true], ["area", "189"], ["property_price", 335795], ["maintenance_price", 791], ["is_active", true], ["created_at", "2023-10-11 14:08:25.555473"], ["updated_at", "2023-10-11 14:08:25.555473"], ["user_id", 9]]
+  [1m[36mTRANSACTION (19.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3883], ["bedrooms", 2], ["bathrooms", 1], ["property_type", "est"], ["contract_type", "quae"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ipsum dolor repellendus quisquam."], ["address", "Apt. 443 35250 Shannan Estate, Alinamouth, DE 63618-2383"], ["pet_friendly", false], ["area", "69"], ["property_price", 352211], ["maintenance_price", 414], ["is_active", true], ["created_at", "2023-10-11 14:08:25.583580"], ["updated_at", "2023-10-11 14:08:25.583580"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "edmund@walsh-effertz.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "edmund@walsh-effertz.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Joycelyn Stamm"], ["phone_number", "(397) 645-7791 x0451"], ["created_at", "2023-10-11 14:08:25.789108"], ["updated_at", "2023-10-11 14:08:25.789108"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3523], ["bedrooms", 1], ["bathrooms", 1], ["property_type", "magnam"], ["contract_type", "ut"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Dolorem eligendi blanditiis tempore."], ["address", "Suite 680 4551 Edna Parkways, Nitzschechester, NV 17716-6898"], ["pet_friendly", false], ["area", "53"], ["property_price", 293155], ["maintenance_price", 179], ["is_active", false], ["created_at", "2023-10-11 14:08:25.803019"], ["updated_at", "2023-10-11 14:08:25.803019"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3394], ["bedrooms", 1], ["bathrooms", 2], ["property_type", "nisi"], ["contract_type", "qui"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Et minus rerum pariatur."], ["address", "1862 Octavia Isle, Lake Bruno, MS 02663"], ["pet_friendly", false], ["area", "101"], ["property_price", 96025], ["maintenance_price", 348], ["is_active", false], ["created_at", "2023-10-11 14:08:25.812509"], ["updated_at", "2023-10-11 14:08:25.812509"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2014], ["bedrooms", 3], ["bathrooms", 3], ["property_type", "reprehenderit"], ["contract_type", "dolores"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Et omnis rerum distinctio."], ["address", "Apt. 791 917 Marylin Flats, Corwinborough, IA 14203"], ["pet_friendly", true], ["area", "62"], ["property_price", 236490], ["maintenance_price", 930], ["is_active", false], ["created_at", "2023-10-11 14:08:25.820404"], ["updated_at", "2023-10-11 14:08:25.820404"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3436], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "et"], ["contract_type", "illo"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Est perspiciatis repudiandae atque."], ["address", "925 Ida Mount, Hageneshaven, TN 38468-0264"], ["pet_friendly", true], ["area", "124"], ["property_price", 326114], ["maintenance_price", 160], ["is_active", false], ["created_at", "2023-10-11 14:08:25.831262"], ["updated_at", "2023-10-11 14:08:25.831262"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "contract_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2352], ["bedrooms", 5], ["bathrooms", 2], ["property_type", "error"], ["contract_type", "dolor"], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Dolores omnis autem placeat."], ["address", "Suite 483 206 Collins Mountains, North Zachery, CA 73806-2341"], ["pet_friendly", true], ["area", "200"], ["property_price", 447018], ["maintenance_price", 985], ["is_active", true], ["created_at", "2023-10-11 14:08:25.839615"], ["updated_at", "2023-10-11 14:08:25.839615"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["created_at", "2023-10-11 14:08:26.046124"], ["updated_at", "2023-10-11 14:08:26.046124"]]
+  [1m[36mTRANSACTION (6.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["created_at", "2023-10-11 14:08:26.250446"], ["updated_at", "2023-10-11 14:08:26.250446"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m

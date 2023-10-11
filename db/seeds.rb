@@ -12,7 +12,7 @@ Property.destroy_all
     name: Faker::Name.name,
     phone_number: Faker::PhoneNumber.phone_number
   )
-
+  user.properties.destroy_all
   # Crear propiedades ficticias para cada usuario
   5.times do
     Property.create!(
