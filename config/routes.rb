@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
 
+  # Route for image uploads
+  post '/upload_image' => 'images#upload'
 end

@@ -2,6 +2,10 @@ require_relative "boot"
 
 require "rails/all"
 
+# Load the .env file
+require 'dotenv'
+Dotenv.load('.env')
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -28,5 +32,13 @@ module GetThatHomeApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    # Configure Cloudinary
+    config.after_initialize do
+      Cloudinary.config do |cloudinary_config|
+        cloudinary_config.cloud_name = ENV['CLOUDINARY_CLOUD_NAME']
+        cloudinary_config.api_key = ENV['CLOUDINARY_API_KEY']
+        cloudinary_config.api_secret = ENV['CLOUDINARY_API_SECRET']
+      end
+    end
   end
 end
