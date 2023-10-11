@@ -9,5 +9,5 @@
 #   end
 # Create users
 User.destroy_all
-User.create(email: 'test@mail.com', password: '123456')
-User.create(email: 'hello@mail.com', password: '123456')
+User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555')
+User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_number: '12334456')
