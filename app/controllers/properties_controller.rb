@@ -33,6 +33,8 @@ class PropertiesController < ApplicationController
       maintenance_price: prop_params[:maintenance_price],
       user_id: prop_params[:user_id],
       is_active: prop_params[:is_active],
+      longitude: prop_params[:longitude],
+      latitude: prop_params[:latitude]
       )
       @property.user = current_user
 
@@ -63,7 +65,9 @@ class PropertiesController < ApplicationController
         property_price:  params[:property_price],
         maintenance_price: params[:maintenance_price],
         user_id: params[:user_id],
-        is_active: params[:is_active]
+        is_active: params[:is_active],
+        longitude: params[:longitude],
+        latitude: params[:latitude]
       )
       render json: "Property Record Updated Successfully!"
     else
@@ -98,7 +102,9 @@ class PropertiesController < ApplicationController
       :property_price,
       :maintenance_price,
       :user_id,
-      :is_active
+      :is_active,
+      :longitude,
+      :latitude
     ])
   end
 end

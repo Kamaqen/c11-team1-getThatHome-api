@@ -15,6 +15,8 @@ class CreateProperties < ActiveRecord::Migration[7.1]
       t.integer :maintenance_price
       t.integer :user_id
       t.boolean :is_active
+      t.string :longitude
+      t.string :latitude
 
       t.timestamps
     end
