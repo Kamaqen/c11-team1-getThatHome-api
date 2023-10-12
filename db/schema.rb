@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_020539) do
     t.integer "property_price"
     t.integer "maintenance_price"
     t.boolean "is_active"
+    t.string "longitude"
+    t.string "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
