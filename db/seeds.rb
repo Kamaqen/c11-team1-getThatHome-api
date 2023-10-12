@@ -34,7 +34,7 @@ end
       bathrooms: Faker::Number.between(from: 1, to: 3),
       property_type: Faker::Number.between(from: 0, to: 1),
       operation_type: Faker::Number.between(from: 0, to: 1),
-      image: Faker::Placeholdit.image,
+      urls: ["https://www.freepik.es", "https://www.freepik.es", "https://www.freepik.es"],
       description: Faker::Lorem.sentence,
       address: Faker::Address.full_address,
       pet_friendly: Faker::Boolean.boolean,

@@ -6,13 +6,13 @@ class CreateProperties < ActiveRecord::Migration[7.1]
       t.integer :bathrooms
       t.integer :property_type
       t.integer :operation_type
-      t.string :image
       t.text :description
       t.string :address
       t.boolean :pet_friendly
       t.string :area
       t.integer :property_price
       t.integer :maintenance_price
+      t.text :urls, array: true, default: []
       t.integer :user_id
       t.boolean :is_active
 

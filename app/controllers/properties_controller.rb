@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  skip_before_action :authorize, only: [:index]
   def index
     properties = Property.all
     render json: properties, status: 200
@@ -23,13 +24,13 @@ class PropertiesController < ApplicationController
       bathrooms: prop_params[:bathrooms],
       property_type: prop_params[:property_type],
       operation_type: prop_params[:operation_type],
-      image: prop_params[:image],
       description: prop_params[:description],
       address: prop_params[:address],
       pet_friendly: prop_params[:pet_friendly],
       area: prop_params[:area],
       property_price: prop_params[:property_price],
       maintenance_price: prop_params[:maintenance_price],
+      urls: prop_params[:urls],
       user_id: prop_params[:user_id],
       is_active: prop_params[:is_active],
       )
@@ -54,13 +55,13 @@ class PropertiesController < ApplicationController
         bathrooms: params[:bathrooms],
         property_type: params[:property_type],
         operation_type: params[:operation_type],
-        image:  params[:image],
         description: params[:description],
         address: params[:address],
         pet_friendly: params[:pet_friendly],
         area: params[:area],
         property_price:  params[:property_price],
         maintenance_price: params[:maintenance_price],
+        urls: params[:urls],
         user_id: params[:user_id],
         is_active: params[:is_active]
       )
@@ -89,13 +90,13 @@ class PropertiesController < ApplicationController
       :bathrooms,
       :property_type,
       :operation_type,
-      :image,
       :description,
       :address,
       :pet_friendly,
       :area,
       :property_price,
       :maintenance_price,
+      :urls,
       :user_id,
       :is_active
     ])

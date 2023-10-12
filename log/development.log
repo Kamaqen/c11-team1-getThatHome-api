@@ -9522,3 +9522,470 @@ Migrating to CreateUsersProperties (20231011020539)
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
   [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (90.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (89.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (465.4ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (395.0ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (65.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-12 01:47:14.321900', '2023-10-12 01:47:14.321904') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "urls" text[] DEFAULT '{}', "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (57.1ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (28.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (78.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (271.3ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (194.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (56.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-12 01:58:55.848178', '2023-10-12 01:58:55.848181') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "urls" text[] DEFAULT '{}', "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (56.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.6ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (55.9ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "claude@johns.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "claude@johns.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Madonna Langosh"], ["phone_number", "489.484.8511 x641"], ["role", 1], ["created_at", "2023-10-12 02:03:32.314040"], ["updated_at", "2023-10-12 02:03:32.314040"]]
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "marti@prohaska.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "marti@prohaska.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Bettie Sanford"], ["phone_number", "541.152.8714 x272"], ["role", 1], ["created_at", "2023-10-12 02:03:32.512446"], ["updated_at", "2023-10-12 02:03:32.512446"]]
+  [1m[36mTRANSACTION (6.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oda@kulas.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "oda@kulas.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Prof. Jeraldine Mante"], ["phone_number", "425.835.2442"], ["role", 1], ["created_at", "2023-10-12 02:03:32.710081"], ["updated_at", "2023-10-12 02:03:32.710081"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "benedict.stamm@schaefer.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "benedict.stamm@schaefer.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Cary Jaskolski IV"], ["phone_number", "1-915-122-5557 x940"], ["role", 1], ["created_at", "2023-10-12 02:03:32.907504"], ["updated_at", "2023-10-12 02:03:32.907504"]]
+  [1m[36mTRANSACTION (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hilton@barrows.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "hilton@barrows.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Piper Rice"], ["phone_number", "1-946-557-4536"], ["role", 1], ["created_at", "2023-10-12 02:03:33.105617"], ["updated_at", "2023-10-12 02:03:33.105617"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (7.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "rayford@zieme-schamberger.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "rayford@zieme-schamberger.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Clarine Marvin II"], ["phone_number", "818.775.6235 x13307"], ["role", 0], ["created_at", "2023-10-12 02:03:33.306989"], ["updated_at", "2023-10-12 02:03:33.306989"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 1]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 2]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 3]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 4]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 4]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 4]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 5]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 5]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 5]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 6]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "fredrick@sanford.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "fredrick@sanford.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Alba Prohaska"], ["phone_number", "951-274-2936 x58847"], ["role", 1], ["created_at", "2023-10-12 02:06:27.027744"], ["updated_at", "2023-10-12 02:06:27.027744"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lavern_goyette@walker-cormier.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "lavern_goyette@walker-cormier.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Son Gerlach"], ["phone_number", "511-521-5621 x92575"], ["role", 1], ["created_at", "2023-10-12 02:06:27.227403"], ["updated_at", "2023-10-12 02:06:27.227403"]]
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "trinidad_lueilwitz@kling.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "trinidad_lueilwitz@kling.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Karyn Herzog IV"], ["phone_number", "(732) 281-3025 x22801"], ["role", 1], ["created_at", "2023-10-12 02:06:27.425499"], ["updated_at", "2023-10-12 02:06:27.425499"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bennie.brown@schaden.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "bennie.brown@schaden.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Ms. Macie Stoltenberg"], ["phone_number", "999.759.7110 x0274"], ["role", 1], ["created_at", "2023-10-12 02:06:27.621661"], ["updated_at", "2023-10-12 02:06:27.621661"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "travis@deckow.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "travis@deckow.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Loren Harber IV"], ["phone_number", "604-278-1360 x356"], ["role", 1], ["created_at", "2023-10-12 02:06:27.815397"], ["updated_at", "2023-10-12 02:06:27.815397"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mack@mcclure-jacobson.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "mack@mcclure-jacobson.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Jeramy Huel"], ["phone_number", "835-143-5428 x86141"], ["role", 0], ["created_at", "2023-10-12 02:06:28.013965"], ["updated_at", "2023-10-12 02:06:28.013965"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 7]]
+  [1m[36mUser::HABTM_Properties Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 7]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 7]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 8]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 8]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 8]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 9]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 9]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 9]]
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 10]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 10]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 10]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[36mUser::HABTM_Properties Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 11]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 11]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" INNER JOIN "users_properties" ON "properties"."id" = "users_properties"."property_id" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 12]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1 AND 1=0[0m  [["user_id", 12]]
+  [1m[36mUser::HABTM_Properties Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_properties" WHERE "users_properties"."user_id" = $1[0m  [["user_id", 12]]
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 12]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "marcelo_skiles@davis.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "marcelo_skiles@davis.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Dr. Danae Johns"], ["phone_number", "1-695-507-1194"], ["role", 1], ["created_at", "2023-10-12 02:08:46.862992"], ["updated_at", "2023-10-12 02:08:46.862992"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "billi.mueller@sipes.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "billi.mueller@sipes.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Pres. Daphne Conn"], ["phone_number", "1-182-817-6119"], ["role", 1], ["created_at", "2023-10-12 02:08:47.061726"], ["updated_at", "2023-10-12 02:08:47.061726"]]
+  [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "shanelle@baumbach-hilll.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "shanelle@baumbach-hilll.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Frederick Schuppe"], ["phone_number", "(914) 508-1888 x809"], ["role", 1], ["created_at", "2023-10-12 02:08:47.262577"], ["updated_at", "2023-10-12 02:08:47.262577"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mariano_oberbrunner@dach.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "mariano_oberbrunner@dach.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Herschel Macejkovic"], ["phone_number", "(470) 818-1783"], ["role", 1], ["created_at", "2023-10-12 02:08:47.461446"], ["updated_at", "2023-10-12 02:08:47.461446"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "maynard.ohara@dickens.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "maynard.ohara@dickens.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Dionne McCullough"], ["phone_number", "746-770-2991 x667"], ["role", 1], ["created_at", "2023-10-12 02:08:47.658878"], ["updated_at", "2023-10-12 02:08:47.658878"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jack.ferry@grimes.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "jack.ferry@grimes.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Sherman Dare I"], ["phone_number", "941.898.2947"], ["role", 0], ["created_at", "2023-10-12 02:08:47.857839"], ["updated_at", "2023-10-12 02:08:47.857839"]]
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 4366], ["bedrooms", 3], ["bathrooms", 2], ["property_type", 0], ["operation_type", 0], ["image", nil], ["description", "Aspernatur culpa quos facere."], ["address", "Apt. 381 832 Lawerence Rue, Normamouth, MN 20363-5097"], ["pet_friendly", true], ["area", "57"], ["property_price", 471264], ["maintenance_price", 476], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:47.918240"], ["updated_at", "2023-10-12 02:08:47.918240"], ["user_id", 18]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (11.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 3903], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["image", nil], ["description", "Itaque quia culpa veniam."], ["address", "Apt. 232 40010 Jeffry Pines, New Mervin, CO 62483-4977"], ["pet_friendly", true], ["area", "103"], ["property_price", 126896], ["maintenance_price", 419], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:47.926153"], ["updated_at", "2023-10-12 02:08:47.926153"], ["user_id", 18]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "heidi@davis.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "heidi@davis.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Sanora Nader"], ["phone_number", "(332) 140-2863 x0869"], ["role", 0], ["created_at", "2023-10-12 02:08:48.130027"], ["updated_at", "2023-10-12 02:08:48.130027"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 2893], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["image", nil], ["description", "Non consequatur exercitationem aut."], ["address", "Suite 146 49019 Corkery Gateway, South Lacyville, GA 17017-0866"], ["pet_friendly", true], ["area", "132"], ["property_price", 51740], ["maintenance_price", 752], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.136841"], ["updated_at", "2023-10-12 02:08:48.136841"], ["user_id", 19]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 3474], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["image", nil], ["description", "Hic quo magnam corporis."], ["address", "712 McDermott Common, New Eilenefurt, MA 68881-5740"], ["pet_friendly", true], ["area", "86"], ["property_price", 336189], ["maintenance_price", 582], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.145312"], ["updated_at", "2023-10-12 02:08:48.145312"], ["user_id", 19]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "merideth@mclaughlin.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "merideth@mclaughlin.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Patience Sipes"], ["phone_number", "1-290-099-1328 x331"], ["role", 0], ["created_at", "2023-10-12 02:08:48.341588"], ["updated_at", "2023-10-12 02:08:48.341588"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 2070], ["bedrooms", 4], ["bathrooms", 2], ["property_type", 1], ["operation_type", 0], ["image", nil], ["description", "Nam sed quod itaque."], ["address", "168 Schaden Burgs, Margartshire, ME 83464-5082"], ["pet_friendly", false], ["area", "52"], ["property_price", 253616], ["maintenance_price", 697], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.347914"], ["updated_at", "2023-10-12 02:08:48.347914"], ["user_id", 20]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 3706], ["bedrooms", 2], ["bathrooms", 1], ["property_type", 0], ["operation_type", 1], ["image", nil], ["description", "Labore distinctio cum modi."], ["address", "6706 Crist Rapid, New Waichester, NE 20350"], ["pet_friendly", true], ["area", "106"], ["property_price", 105086], ["maintenance_price", 603], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.356114"], ["updated_at", "2023-10-12 02:08:48.356114"], ["user_id", 20]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "herb@feil.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "herb@feil.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Kent Swift"], ["phone_number", "306.977.5821 x5995"], ["role", 0], ["created_at", "2023-10-12 02:08:48.551529"], ["updated_at", "2023-10-12 02:08:48.551529"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 2979], ["bedrooms", 4], ["bathrooms", 2], ["property_type", 0], ["operation_type", 1], ["image", nil], ["description", "Excepturi iste consequatur delectus."], ["address", "Suite 138 78739 Bartoletti Inlet, New Soledadmouth, NE 88669"], ["pet_friendly", true], ["area", "65"], ["property_price", 97511], ["maintenance_price", 317], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.562992"], ["updated_at", "2023-10-12 02:08:48.562992"], ["user_id", 21]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (9.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 3315], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["image", nil], ["description", "Autem voluptatem ab aut."], ["address", "Suite 201 52524 Hauck Prairie, Clevelandhaven, FL 90786-6054"], ["pet_friendly", true], ["area", "175"], ["property_price", 499091], ["maintenance_price", 102], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.571188"], ["updated_at", "2023-10-12 02:08:48.571188"], ["user_id", 21]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (14.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "leighann@west-hermann.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "leighann@west-hermann.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Amb. Ivory Smith"], ["phone_number", "516.629.4346"], ["role", 0], ["created_at", "2023-10-12 02:08:48.812062"], ["updated_at", "2023-10-12 02:08:48.812062"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 4997], ["bedrooms", 3], ["bathrooms", 3], ["property_type", 1], ["operation_type", 1], ["image", nil], ["description", "Eum delectus incidunt saepe."], ["address", "99020 Lynn Ports, Kendallview, TX 28431-1258"], ["pet_friendly", false], ["area", "95"], ["property_price", 396332], ["maintenance_price", 818], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.823621"], ["updated_at", "2023-10-12 02:08:48.823621"], ["user_id", 22]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["rent_value", 1525], ["bedrooms", 3], ["bathrooms", 2], ["property_type", 1], ["operation_type", 1], ["image", nil], ["description", "Maiores et distinctio laudantium."], ["address", "5466 Upton Crossroad, Elysetown, OH 38773-5864"], ["pet_friendly", false], ["area", "92"], ["property_price", 60731], ["maintenance_price", 215], ["urls", "{https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:08:48.832191"], ["updated_at", "2023-10-12 02:08:48.832191"], ["user_id", 22]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2023-10-11 21:10:44 -0500
+Started GET "/" for 127.0.0.1 at 2023-10-11 21:10:44 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendering /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 383)
+  Rendered /home/george/.rvm/gems/ruby-3.2.2/gems/railties-7.1.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.0ms | Allocations: 79)
+Completed 200 OK in 2852ms (Views: 117.1ms | ActiveRecord: 0.0ms | Allocations: 286043)
+
+
+Completed 200 OK in 2858ms (Views: 117.4ms | ActiveRecord: 0.0ms | Allocations: 286201)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-11 21:10:56 -0500
+Processing by PropertiesController#index as HTML
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 263)
+
+
+Started GET "/properties" for 127.0.0.1 at 2023-10-11 21:12:06 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PropertiesController#index as HTML
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  ↳ app/controllers/properties_controller.rb:5:in `index'
+Completed 200 OK in 252ms (Views: 76.3ms | ActiveRecord: 3.5ms | Allocations: 35877)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5009.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (27.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (34.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (114.3ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (134.4ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (22.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-12 02:14:45.932567', '2023-10-12 02:14:45.932570') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "urls" text[] DEFAULT '{}', "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (15.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "julius.bogisich@jerde.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "julius.bogisich@jerde.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Fr. Jeffry Veum"], ["phone_number", "924-362-4220 x3501"], ["role", 1], ["created_at", "2023-10-12 02:15:16.503304"], ["updated_at", "2023-10-12 02:15:16.503304"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kasi_ryan@lebsack-maggio.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "kasi_ryan@lebsack-maggio.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Katharina Dach"], ["phone_number", "1-555-826-0209"], ["role", 1], ["created_at", "2023-10-12 02:15:16.700442"], ["updated_at", "2023-10-12 02:15:16.700442"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bo@mraz.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "bo@mraz.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Shad Crona"], ["phone_number", "490.828.5794 x00906"], ["role", 1], ["created_at", "2023-10-12 02:15:16.897182"], ["updated_at", "2023-10-12 02:15:16.897182"]]
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "velda_tremblay@labadie.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "velda_tremblay@labadie.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Cruz Lemke"], ["phone_number", "1-849-146-8218"], ["role", 1], ["created_at", "2023-10-12 02:15:17.096029"], ["updated_at", "2023-10-12 02:15:17.096029"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "shari_russel@lakin-graham.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "shari_russel@lakin-graham.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Myrle Kessler"], ["phone_number", "1-285-262-6443 x508"], ["role", 1], ["created_at", "2023-10-12 02:15:17.293650"], ["updated_at", "2023-10-12 02:15:17.293650"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tyree.okon@kilback.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "tyree.okon@kilback.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Marcus Kub DO"], ["phone_number", "(264) 982-0884 x68694"], ["role", 0], ["created_at", "2023-10-12 02:15:17.492663"], ["updated_at", "2023-10-12 02:15:17.492663"]]
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1918], ["bedrooms", 1], ["bathrooms", 3], ["property_type", 0], ["operation_type", 1], ["description", "Dicta et quae in."], ["address", "891 Kenda Greens, Rodriguezfort, NJ 20007-7593"], ["pet_friendly", false], ["area", "196"], ["property_price", 170359], ["maintenance_price", 134], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:15:17.561200"], ["updated_at", "2023-10-12 02:15:17.561200"], ["user_id", 6]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1681], ["bedrooms", 2], ["bathrooms", 3], ["property_type", 0], ["operation_type", 1], ["description", "Asperiores omnis dignissimos blanditiis."], ["address", "Apt. 449 31805 Bartoletti Lock, Hortenseview, MA 32770"], ["pet_friendly", true], ["area", "56"], ["property_price", 290722], ["maintenance_price", 410], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", false], ["created_at", "2023-10-12 02:15:17.571018"], ["updated_at", "2023-10-12 02:15:17.571018"], ["user_id", 6]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "edwin@romaguera.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "edwin@romaguera.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Trina Stroman"], ["phone_number", "476.104.4579"], ["role", 0], ["created_at", "2023-10-12 02:15:17.766004"], ["updated_at", "2023-10-12 02:15:17.766004"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4218], ["bedrooms", 5], ["bathrooms", 2], ["property_type", 0], ["operation_type", 1], ["description", "Molestias qui quas accusantium."], ["address", "84644 Koepp Gardens, Wadebury, NV 13617"], ["pet_friendly", true], ["area", "69"], ["property_price", 234033], ["maintenance_price", 488], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:15:17.776977"], ["updated_at", "2023-10-12 02:15:17.776977"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4959], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["description", "Aliquam iste voluptas voluptatibus."], ["address", "591 Reilly Greens, Lake Lucindaside, WI 93512"], ["pet_friendly", true], ["area", "177"], ["property_price", 499878], ["maintenance_price", 685], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", false], ["created_at", "2023-10-12 02:15:17.786010"], ["updated_at", "2023-10-12 02:15:17.786010"], ["user_id", 7]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ione.labadie@hane-kling.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "ione.labadie@hane-kling.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Willian Bailey"], ["phone_number", "383.702.1665 x5562"], ["role", 0], ["created_at", "2023-10-12 02:15:17.980941"], ["updated_at", "2023-10-12 02:15:17.980941"]]
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3208], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 0], ["operation_type", 1], ["description", "Praesentium voluptate et et."], ["address", "35722 Dooley Ferry, New Leo, MA 48770"], ["pet_friendly", false], ["area", "189"], ["property_price", 134517], ["maintenance_price", 910], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:15:17.992920"], ["updated_at", "2023-10-12 02:15:17.992920"], ["user_id", 8]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (3.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2740], ["bedrooms", 4], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["description", "Enim repudiandae et est."], ["address", "Apt. 423 515 Witting Expressway, Lake Dick, MN 63694-7334"], ["pet_friendly", false], ["area", "111"], ["property_price", 394137], ["maintenance_price", 315], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", false], ["created_at", "2023-10-12 02:15:18.004812"], ["updated_at", "2023-10-12 02:15:18.004812"], ["user_id", 8]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lindsey@blick.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "lindsey@blick.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Msgr. Gerard Hodkiewicz"], ["phone_number", "152.595.0997 x6085"], ["role", 0], ["created_at", "2023-10-12 02:15:18.205497"], ["updated_at", "2023-10-12 02:15:18.205497"]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1586], ["bedrooms", 2], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["description", "Molestiae distinctio maxime quo."], ["address", "Suite 648 175 Johnie Lakes, Towneview, TX 18031-8422"], ["pet_friendly", true], ["area", "92"], ["property_price", 122882], ["maintenance_price", 619], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:15:18.213949"], ["updated_at", "2023-10-12 02:15:18.213949"], ["user_id", 9]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2851], ["bedrooms", 4], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["description", "Earum pariatur nihil et."], ["address", "12992 Bernier Keys, New Cherrieberg, KS 81870-8341"], ["pet_friendly", false], ["area", "153"], ["property_price", 196659], ["maintenance_price", 405], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", false], ["created_at", "2023-10-12 02:15:18.223313"], ["updated_at", "2023-10-12 02:15:18.223313"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "foster@yundt.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "foster@yundt.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Ilona Wunsch"], ["phone_number", "841.969.7314 x9362"], ["role", 0], ["created_at", "2023-10-12 02:15:18.417524"], ["updated_at", "2023-10-12 02:15:18.417524"]]
+  [1m[36mTRANSACTION (6.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2466], ["bedrooms", 3], ["bathrooms", 2], ["property_type", 0], ["operation_type", 1], ["description", "Tempore asperiores laborum earum."], ["address", "9762 Marcellus Crest, North Lavernview, RI 20165"], ["pet_friendly", true], ["area", "197"], ["property_price", 434070], ["maintenance_price", 449], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:15:18.429266"], ["updated_at", "2023-10-12 02:15:18.429266"], ["user_id", 10]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "urls", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3477], ["bedrooms", 4], ["bathrooms", 2], ["property_type", 0], ["operation_type", 1], ["description", "Dolor corporis explicabo iusto."], ["address", "220 Mraz Isle, West Sharan, WV 46013"], ["pet_friendly", false], ["area", "176"], ["property_price", 475723], ["maintenance_price", 263], ["urls", "{https://www.freepik.es,https://www.freepik.es,https://www.freepik.es}"], ["is_active", true], ["created_at", "2023-10-12 02:15:18.438187"], ["updated_at", "2023-10-12 02:15:18.438187"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mProperty Load (1.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
