@@ -19,7 +19,4 @@ Rails.application.routes.draw do
   resources :users, only: :create
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
-
-  # Image Uploads
-  post '/upload_image' => 'images#upload'
 end
