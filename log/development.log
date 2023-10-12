@@ -11475,3 +11475,263 @@ Processing by SessionsController#create as */*
 Completed 200 OK in 331ms (Views: 0.1ms | ActiveRecord: 15.0ms | Allocations: 3494)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (41.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (41.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (87.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_developmen"[0m
+  [1m[35m (40.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (190.9ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_developmen" ENCODING = 'unicode'[0m
+  [1m[35m (99.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8473812576736265430)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (40.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-12 17:22:33.429024', '2023-10-12 17:22:33.429028') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (47.5ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "image" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (39.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (44.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (39.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (41.0ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (29.4ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8473812576736265430)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (1.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["role", 0], ["created_at", "2023-10-12 17:22:48.974886"], ["updated_at", "2023-10-12 17:22:48.974886"]]
+  [1m[36mTRANSACTION (42.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["role", 1], ["created_at", "2023-10-12 17:22:49.282511"], ["updated_at", "2023-10-12 17:22:49.282511"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "debbra_turner@boyer-pfannerstill.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "debbra_turner@boyer-pfannerstill.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Rosanna Grant"], ["phone_number", "610.644.5525 x964"], ["role", 1], ["created_at", "2023-10-12 17:22:51.529311"], ["updated_at", "2023-10-12 17:22:51.529311"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tajuana@ward.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "tajuana@ward.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Carley Rath"], ["phone_number", "1-891-122-8857 x7006"], ["role", 1], ["created_at", "2023-10-12 17:22:51.803281"], ["updated_at", "2023-10-12 17:22:51.803281"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "meryl@adams-kuhn.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "meryl@adams-kuhn.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Madge Mueller III"], ["phone_number", "1-771-745-9265"], ["role", 1], ["created_at", "2023-10-12 17:22:52.081434"], ["updated_at", "2023-10-12 17:22:52.081434"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "allyson@hilll.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "allyson@hilll.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Msgr. Florentino Beer"], ["phone_number", "(754) 079-6716 x24914"], ["role", 1], ["created_at", "2023-10-12 17:22:52.362288"], ["updated_at", "2023-10-12 17:22:52.362288"]]
+  [1m[36mTRANSACTION (39.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "stuart_brakus@terry-donnelly.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "stuart_brakus@terry-donnelly.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Joey Homenick"], ["phone_number", "(499) 894-8981"], ["role", 1], ["created_at", "2023-10-12 17:22:52.686110"], ["updated_at", "2023-10-12 17:22:52.686110"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "aleshia@hegmann.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "aleshia@hegmann.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Von Hammes"], ["phone_number", "(651) 147-7991"], ["role", 0], ["created_at", "2023-10-12 17:22:52.981642"], ["updated_at", "2023-10-12 17:22:52.981642"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (4.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4182], ["bedrooms", 2], ["bathrooms", 2], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Exercitationem ut modi placeat."], ["address", "Suite 501 497 Fatimah Row, Simonisberg, OH 11035"], ["pet_friendly", false], ["area", "75"], ["property_price", 240552], ["maintenance_price", 765], ["is_active", true], ["created_at", "2023-10-12 17:22:53.045827"], ["updated_at", "2023-10-12 17:22:53.045827"], ["user_id", 8]]
+  [1m[36mTRANSACTION (39.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.6ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1044], ["bedrooms", 3], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Odio et aut dolorem."], ["address", "1500 Upton Pine, Lorrettahaven, UT 36577-7992"], ["pet_friendly", false], ["area", "197"], ["property_price", 166747], ["maintenance_price", 930], ["is_active", false], ["created_at", "2023-10-12 17:22:53.094461"], ["updated_at", "2023-10-12 17:22:53.094461"], ["user_id", 8]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "claude.lynch@johnson-homenick.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "claude.lynch@johnson-homenick.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Elza Torp"], ["phone_number", "920.900.1521"], ["role", 0], ["created_at", "2023-10-12 17:22:53.400647"], ["updated_at", "2023-10-12 17:22:53.400647"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2801], ["bedrooms", 5], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Sint aut veniam quia."], ["address", "Apt. 931 5765 Cora Mountain, Shieldsview, ME 20399-1860"], ["pet_friendly", true], ["area", "60"], ["property_price", 71185], ["maintenance_price", 887], ["is_active", false], ["created_at", "2023-10-12 17:22:53.406787"], ["updated_at", "2023-10-12 17:22:53.406787"], ["user_id", 9]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 875], ["bedrooms", 2], ["bathrooms", 2], ["property_type", 0], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Ut eveniet dolor occaecati."], ["address", "31623 Rodriguez Mall, North Ahmed, NM 72539"], ["pet_friendly", false], ["area", "196"], ["property_price", 276012], ["maintenance_price", 138], ["is_active", true], ["created_at", "2023-10-12 17:22:53.411823"], ["updated_at", "2023-10-12 17:22:53.411823"], ["user_id", 9]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tessa.bednar@fritsch.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "tessa.bednar@fritsch.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Hugo White"], ["phone_number", "1-177-937-7202 x136"], ["role", 0], ["created_at", "2023-10-12 17:22:53.704987"], ["updated_at", "2023-10-12 17:22:53.704987"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3572], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Eum ut quidem facere."], ["address", "Suite 303 342 Rempel Squares, Nicolasville, DE 39857-9627"], ["pet_friendly", true], ["area", "116"], ["property_price", 119829], ["maintenance_price", 340], ["is_active", false], ["created_at", "2023-10-12 17:22:53.710560"], ["updated_at", "2023-10-12 17:22:53.710560"], ["user_id", 10]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1196], ["bedrooms", 4], ["bathrooms", 1], ["property_type", 0], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Voluptatem enim excepturi eveniet."], ["address", "5160 Jasmin Centers, Krajcikberg, WA 19682"], ["pet_friendly", true], ["area", "53"], ["property_price", 492446], ["maintenance_price", 145], ["is_active", false], ["created_at", "2023-10-12 17:22:53.719931"], ["updated_at", "2023-10-12 17:22:53.719931"], ["user_id", 10]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "saul@volkman.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "saul@volkman.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Britt Hegmann"], ["phone_number", "519-317-0224 x69669"], ["role", 0], ["created_at", "2023-10-12 17:22:53.992404"], ["updated_at", "2023-10-12 17:22:53.992404"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1719], ["bedrooms", 3], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Explicabo voluptatum dolorum vitae."], ["address", "Apt. 531 269 Nader Ranch, North Bruno, TN 07109-7586"], ["pet_friendly", true], ["area", "85"], ["property_price", 220627], ["maintenance_price", 741], ["is_active", false], ["created_at", "2023-10-12 17:22:53.998883"], ["updated_at", "2023-10-12 17:22:53.998883"], ["user_id", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 989], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Voluptatem hic distinctio in."], ["address", "Apt. 156 777 Scottie Brooks, New Florentino, WA 05399"], ["pet_friendly", false], ["area", "157"], ["property_price", 384827], ["maintenance_price", 176], ["is_active", false], ["created_at", "2023-10-12 17:22:54.005317"], ["updated_at", "2023-10-12 17:22:54.005317"], ["user_id", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "duane@champlin.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "duane@champlin.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Arturo Kilback PhD"], ["phone_number", "1-724-791-1644"], ["role", 0], ["created_at", "2023-10-12 17:22:54.274739"], ["updated_at", "2023-10-12 17:22:54.274739"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4987], ["bedrooms", 4], ["bathrooms", 2], ["property_type", 1], ["operation_type", 1], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Perferendis unde error aut."], ["address", "Suite 470 93116 Rosanne Avenue, Mayeberg, LA 34084-0581"], ["pet_friendly", true], ["area", "166"], ["property_price", 81372], ["maintenance_price", 764], ["is_active", true], ["created_at", "2023-10-12 17:22:54.282646"], ["updated_at", "2023-10-12 17:22:54.282646"], ["user_id", 12]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "image", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4744], ["bedrooms", 4], ["bathrooms", 1], ["property_type", 1], ["operation_type", 0], ["image", "https://via.placeholder.com/300x300.png"], ["description", "Iusto sunt consequatur ipsa."], ["address", "Suite 907 44731 Kareem Rue, North Reginechester, MO 53537-1591"], ["pet_friendly", false], ["area", "87"], ["property_price", 119602], ["maintenance_price", 780], ["is_active", true], ["created_at", "2023-10-12 17:22:54.288291"], ["updated_at", "2023-10-12 17:22:54.288291"], ["user_id", 12]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (64.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_developmen"[0m
+  [1m[35m (35.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (218.4ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_developmen" ENCODING = 'unicode'[0m
+  [1m[35m (102.3ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8473812576736265430)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-12 17:33:54.717023', '2023-10-12 17:33:54.717028') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (44.3ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "urls" text[] DEFAULT '{}', "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (34.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (39.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (43.2ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (39.9ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8473812576736265430)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProperty Load (0.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["role", 0], ["created_at", "2023-10-12 17:34:25.764301"], ["updated_at", "2023-10-12 17:34:25.764301"]]
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["role", 1], ["created_at", "2023-10-12 17:34:26.070573"], ["updated_at", "2023-10-12 17:34:26.070573"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "evelia.bauch@wisoky.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "evelia.bauch@wisoky.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Tommie Kreiger"], ["phone_number", "736.089.6324 x267"], ["role", 1], ["created_at", "2023-10-12 17:34:26.678854"], ["updated_at", "2023-10-12 17:34:26.678854"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "roberto_lakin@abbott.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "roberto_lakin@abbott.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Latoyia Goldner I"], ["phone_number", "1-701-998-9117 x472"], ["role", 1], ["created_at", "2023-10-12 17:34:26.953462"], ["updated_at", "2023-10-12 17:34:26.953462"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "alden@rogahn.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "alden@rogahn.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Edmond Nikolaus"], ["phone_number", "(666) 735-4823 x88778"], ["role", 1], ["created_at", "2023-10-12 17:34:27.226468"], ["updated_at", "2023-10-12 17:34:27.226468"]]
+  [1m[36mTRANSACTION (40.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lacy@kemmer.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "lacy@kemmer.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Donn Bode"], ["phone_number", "244-768-4118 x782"], ["role", 1], ["created_at", "2023-10-12 17:34:27.531706"], ["updated_at", "2023-10-12 17:34:27.531706"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "omer@tromp-stamm.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "omer@tromp-stamm.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Floretta Hoeger"], ["phone_number", "(444) 208-8554"], ["role", 1], ["created_at", "2023-10-12 17:34:27.809047"], ["updated_at", "2023-10-12 17:34:27.809047"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kori.osinski@huel.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "kori.osinski@huel.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Reagan Douglas"], ["phone_number", "(905) 235-3280 x4167"], ["role", 0], ["created_at", "2023-10-12 17:34:28.077075"], ["updated_at", "2023-10-12 17:34:28.077075"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3724], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Sint ipsam omnis in."], ["address", "Apt. 778 2802 Dianna Forge, Cletusburgh, OH 15094"], ["pet_friendly", true], ["area", "144"], ["property_price", 265991], ["maintenance_price", 907], ["is_active", true], ["created_at", "2023-10-12 17:34:28.128678"], ["updated_at", "2023-10-12 17:34:28.128678"], ["user_id", 8]]
+  [1m[36mTRANSACTION (20.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.8ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1019], ["bedrooms", 2], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Debitis dolor quod qui."], ["address", "117 Cyril Well, Marquardtfurt, UT 77445"], ["pet_friendly", false], ["area", "72"], ["property_price", 253994], ["maintenance_price", 877], ["is_active", true], ["created_at", "2023-10-12 17:34:28.155793"], ["updated_at", "2023-10-12 17:34:28.155793"], ["user_id", 8]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "valentine@von-grant.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "valentine@von-grant.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Yuri Torp"], ["phone_number", "1-434-168-8411"], ["role", 0], ["created_at", "2023-10-12 17:34:28.427881"], ["updated_at", "2023-10-12 17:34:28.427881"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 4791], ["bedrooms", 2], ["bathrooms", 3], ["property_type", 0], ["operation_type", 1], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Eligendi commodi repellendus odio."], ["address", "Suite 703 4731 Rogahn Forks, Rositabury, IA 63537"], ["pet_friendly", true], ["area", "97"], ["property_price", 439319], ["maintenance_price", 193], ["is_active", true], ["created_at", "2023-10-12 17:34:28.435282"], ["updated_at", "2023-10-12 17:34:28.435282"], ["user_id", 9]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 2337], ["bedrooms", 3], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Debitis dolore qui necessitatibus."], ["address", "570 Bruen Island, Lake Valenemouth, AK 26004-7784"], ["pet_friendly", true], ["area", "153"], ["property_price", 151426], ["maintenance_price", 473], ["is_active", true], ["created_at", "2023-10-12 17:34:28.441232"], ["updated_at", "2023-10-12 17:34:28.441232"], ["user_id", 9]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "briana.reinger@hoppe.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "briana.reinger@hoppe.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Darren Corwin"], ["phone_number", "948-940-5824 x773"], ["role", 0], ["created_at", "2023-10-12 17:34:28.712929"], ["updated_at", "2023-10-12 17:34:28.712929"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1401], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Hic dolores quia dolor."], ["address", "46444 Becker Fall, East Ivanberg, WV 13316"], ["pet_friendly", false], ["area", "121"], ["property_price", 252864], ["maintenance_price", 727], ["is_active", true], ["created_at", "2023-10-12 17:34:28.718411"], ["updated_at", "2023-10-12 17:34:28.718411"], ["user_id", 10]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 546], ["bedrooms", 3], ["bathrooms", 2], ["property_type", 1], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Amet assumenda fugiat quo."], ["address", "Apt. 528 48623 Lockman Row, South Williefurt, RI 14473-8100"], ["pet_friendly", false], ["area", "114"], ["property_price", 209197], ["maintenance_price", 173], ["is_active", true], ["created_at", "2023-10-12 17:34:28.723595"], ["updated_at", "2023-10-12 17:34:28.723595"], ["user_id", 10]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pansy@fay.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "pansy@fay.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Reynaldo Erdman Jr."], ["phone_number", "608-493-8780 x2080"], ["role", 0], ["created_at", "2023-10-12 17:34:28.993323"], ["updated_at", "2023-10-12 17:34:28.993323"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 1761], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Fugiat officia quisquam non."], ["address", "57105 Franklyn Falls, Parisianland, ID 83471"], ["pet_friendly", true], ["area", "102"], ["property_price", 222464], ["maintenance_price", 805], ["is_active", false], ["created_at", "2023-10-12 17:34:28.998924"], ["updated_at", "2023-10-12 17:34:28.998924"], ["user_id", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3153], ["bedrooms", 3], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Odio magnam modi accusamus."], ["address", "6770 Demarcus Ports, Hyunhaven, KS 12180-0803"], ["pet_friendly", false], ["area", "57"], ["property_price", 157975], ["maintenance_price", 894], ["is_active", false], ["created_at", "2023-10-12 17:34:29.003728"], ["updated_at", "2023-10-12 17:34:29.003728"], ["user_id", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "nicky_stamm@schiller.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "nicky_stamm@schiller.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Seth Wisozk"], ["phone_number", "1-153-043-6507 x81190"], ["role", 0], ["created_at", "2023-10-12 17:34:29.274022"], ["updated_at", "2023-10-12 17:34:29.274022"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3112], ["bedrooms", 1], ["bathrooms", 2], ["property_type", 0], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Commodi velit unde vel."], ["address", "Apt. 693 864 Bo Course, Joaneland, KS 63715"], ["pet_friendly", false], ["area", "192"], ["property_price", 144300], ["maintenance_price", 315], ["is_active", true], ["created_at", "2023-10-12 17:34:29.279537"], ["updated_at", "2023-10-12 17:34:29.279537"], ["user_id", 12]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (1.6ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING "id"[0m  [["rent_value", 3072], ["bedrooms", 1], ["bathrooms", 3], ["property_type", 1], ["operation_type", 0], ["urls", "{https://www.codeable.la,https://www.codeable.la,https://www.codeable.la}"], ["description", "Necessitatibus quo quam voluptatem."], ["address", "Suite 142 44182 Isaac Lane, Wilfredofort, AZ 67879"], ["pet_friendly", false], ["area", "71"], ["property_price", 92568], ["maintenance_price", 977], ["is_active", false], ["created_at", "2023-10-12 17:34:29.284223"], ["updated_at", "2023-10-12 17:34:29.284223"], ["user_id", 12]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
