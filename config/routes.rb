@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  
-  resources :properties, only: [:index, :show, :create, :update, :destroy]
-
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,18 +7,19 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get '/properties' => 'properties#index'
+
+  #Properties
+  resources :properties
 
   #Sessions
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
 
   # Users
   resources :users, only: :create
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
 
-  # Route for image uploads
-
+  # Image Uploads
   post '/upload_image' => 'images#upload'
 end
