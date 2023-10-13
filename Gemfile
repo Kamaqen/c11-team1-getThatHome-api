@@ -17,6 +17,8 @@ gem 'cloudinary', '~> 1.4'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'dotenv', groups: [:development, :test]
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
