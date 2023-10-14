@@ -26,5 +26,8 @@ Rails.application.routes.draw do
     get "/contacted", on: :collection, action: :index_contacted
     post "/create_saved", on: :collection, action: :create_saved
     post "/create_contacted", on: :collection, action: :create_contacted
+    patch "/update_saved", on: :member, action: :update_saved
+    patch "/update_contacted", on: :member, action: :update_contacted
   end
+  
 end

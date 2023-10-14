@@ -12812,3 +12812,62 @@ Processing by UserPropertiesController#contacted as */*
 Completed 200 OK in 19ms (Views: 2.0ms | ActiveRecord: 2.1ms | Allocations: 9774)
 
 
+Started GET "/routes" for ::1 at 2023-10-14 17:31:43 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started PATCH "/user_properties/32/update_saved" for 127.0.0.1 at 2023-10-14 17:35:37 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserPropertiesController#update_saved as */*
+  Parameters: {"saved"=>true, "id"=>"32", "user_property"=>{"saved"=>true}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.5ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."id" = $2 LIMIT $3[0m  [["user_id", 15], ["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:36:in `update_saved'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_properties_controller.rb:37:in `update_saved'
+  [1m[36mUserProperty Update (1.6ms)[0m  [1m[33mUPDATE "user_properties" SET "saved" = $1, "updated_at" = $2 WHERE "user_properties"."id" = $3[0m  [["saved", true], ["updated_at", "2023-10-14 22:35:38.288024"], ["id", 32]]
+  ↳ app/controllers/user_properties_controller.rb:37:in `update_saved'
+  [1m[36mTRANSACTION (40.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_properties_controller.rb:37:in `update_saved'
+Completed 200 OK in 203ms (Views: 0.6ms | ActiveRecord: 52.4ms | Allocations: 34094)
+
+
+Started PATCH "/user_properties/33/update_contacted" for 127.0.0.1 at 2023-10-14 17:36:23 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserPropertiesController#update_contacted as */*
+  Parameters: {"contacted"=>true, "id"=>"33", "user_property"=>{"contacted"=>true}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.8ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."id" = $2 LIMIT $3[0m  [["user_id", 15], ["id", 33], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:43:in `update_contacted'
+Completed 404 Not Found in 137ms (ActiveRecord: 10.1ms | Allocations: 24658)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find UserProperty with 'id'=33 [WHERE "user_properties"."user_id" = $1]):
+  
+app/controllers/user_properties_controller.rb:43:in `update_contacted'
+Started PATCH "/user_properties/31/update_contacted" for 127.0.0.1 at 2023-10-14 17:36:35 -0500
+Processing by UserPropertiesController#update_contacted as */*
+  Parameters: {"contacted"=>true, "id"=>"31", "user_property"=>{"contacted"=>true}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.2ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."id" = $2 LIMIT $3[0m  [["user_id", 15], ["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:43:in `update_contacted'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_properties_controller.rb:44:in `update_contacted'
+  [1m[36mUserProperty Update (2.0ms)[0m  [1m[33mUPDATE "user_properties" SET "contacted" = $1, "updated_at" = $2 WHERE "user_properties"."id" = $3[0m  [["contacted", true], ["updated_at", "2023-10-14 22:36:35.059362"], ["id", 31]]
+  ↳ app/controllers/user_properties_controller.rb:44:in `update_contacted'
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_properties_controller.rb:44:in `update_contacted'
+Completed 200 OK in 62ms (Views: 0.6ms | ActiveRecord: 42.8ms | Allocations: 11517)
+
+
