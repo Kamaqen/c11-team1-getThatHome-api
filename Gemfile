@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.2.2"
 gem 'faker'
-
+gem 'devise'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.0"
 
@@ -44,6 +44,11 @@ gem "rack-cors"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'rspec-rails'
 end
 
 group :development do

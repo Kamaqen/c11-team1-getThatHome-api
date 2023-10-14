@@ -16,7 +16,5 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
 
   # Users
-  resources :users, only: :create
-  get "/profile", to: "users#show"
-  patch "/profile", to: "users#update"
+  resources :users
 end

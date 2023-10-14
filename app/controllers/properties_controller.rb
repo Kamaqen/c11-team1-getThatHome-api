@@ -17,35 +17,17 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    Property.transaction do
-      @property = Property.new(
-      rent_value: prop_params[:rent_value],
-      bedrooms: prop_params[:bedrooms],
-      bathrooms: prop_params[:bathrooms],
-      property_type: prop_params[:property_type],
-      operation_type: prop_params[:operation_type],
-      urls: prop_params[:urls],
-      description: prop_params[:description],
-      address: prop_params[:address],
-      pet_friendly: prop_params[:pet_friendly],
-      area: prop_params[:area],
-      property_price: prop_params[:property_price],
-      maintenance_price: prop_params[:maintenance_price],
-      user_id: prop_params[:user_id],
-      is_active: prop_params[:is_active],
-      longitude: prop_params[:longitude],
-      latitude: prop_params[:latitude]
-      )
-      @property.user = current_user
+      property = Property.new(prop_params)
+      property.urls = parse_url_data(params[:urls])
+      property.user = current_user
 
-      if @property.save
-        render json: @property, status: 200
+      if property.save
+        render json: property, status: 200
       else 
       render json: {
-          errors: @property.errors.full_messages
+          errors: property.errors.full_messages
         }, status: :unprocessable_entity
       end
-    end
   end
 
   def update
@@ -87,8 +69,22 @@ class PropertiesController < ApplicationController
   end
 
   private
+
+  def parse_url_data(url_data_param)
+    # Convertir el objeto ActionController::Parameters a JSON y asignarlo a url_data_param
+    json_string = url_data_param.to_json
+  
+    # Verificar si url_data_param es un String JSON válido
+    begin
+      JSON.parse(json_string)
+    rescue JSON::ParserError => e
+      Rails.logger.error("Error parsing JSON for url_data: #{e.message}")
+      {}
+    end
+  end
+
   def prop_params
-    params.require(:property).permit([
+    params.permit([
       :rent_value,
       :bedrooms,
       :bathrooms,

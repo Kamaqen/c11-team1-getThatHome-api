@@ -1,12 +1,16 @@
-require 'faker'
 
-# Elimina todos los usuarios y propiedades existentes antes de crear nuevos registros
+# Eliminate all existing user_properties, properties, and users before creating new records
+UserProperty.destroy_all
 Property.destroy_all
 User.destroy_all
 
-# Crear usuarios fijos
-User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555', role: 0)
-User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_number: '12334456', role: 1)
+# Create fixed users
+user1 = User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555', role: 0)
+user2 = User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_number: '12334456', role: 1)
+
+# Create fake users and properties
+fake_users = []
+fake_properties = []
 
 5.times do
   user = User.create!(
@@ -15,11 +19,10 @@ User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_nu
     name: Faker::Name.name,
     phone_number: Faker::PhoneNumber.phone_number,
     role: 1,
-  )  
+  )
+  fake_users << user
 end
 
-
-# Crear usuarios ficticios
 5.times do
   user = User.create!(
     email: Faker::Internet.unique.email,
@@ -27,18 +30,17 @@ end
     name: Faker::Name.name,
     phone_number: Faker::PhoneNumber.phone_number,
     role: 0,
-  )  
+  )
+  fake_users << user
 
-  # Crear propiedades ficticias para cada usuario
- 
   2.times do
-    Property.create!(
+    property = Property.create!(
       rent_value: Faker::Number.between(from: 500, to: 5000),
       bedrooms: Faker::Number.between(from: 1, to: 5),
       bathrooms: Faker::Number.between(from: 1, to: 3),
       property_type: Faker::Number.between(from: 0, to: 1),
       operation_type: Faker::Number.between(from: 0, to: 1),
-      urls: ["https://www.codeable.la", "https://www.codeable.la", "https://www.codeable.la"],
+      urls: ["https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000"],
       description: Faker::Lorem.sentence,
       address: Faker::Address.full_address,
       pet_friendly: Faker::Boolean.boolean,
@@ -48,8 +50,13 @@ end
       is_active: Faker::Boolean.boolean,
       user: user
     )
+    fake_properties << property
+
+    # Create UserProperty entries for saved and contacted properties
+    UserProperty.create(user: user1, property: property, saved: true, contacted: true)
+    UserProperty.create(user: user2, property: property, saved: false, contacted: true)
+    UserProperty.create(user: user, property: property, saved: true, contacted: false)
   end
 end
 
-
-puts 'Datos ficticios creados con éxito.'
+puts 'Fake data created successfully.'

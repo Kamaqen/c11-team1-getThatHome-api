@@ -6,8 +6,8 @@ class CreateProperties < ActiveRecord::Migration[7.1]
       t.integer :bathrooms
       t.integer :property_type
       t.integer :operation_type
-      t.text :urls, array: true, default: []
       t.text :description
+      t.jsonb :urls, default: {}, null: false
       t.string :address
       t.boolean :pet_friendly
       t.string :area
