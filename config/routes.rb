@@ -19,4 +19,10 @@ Rails.application.routes.draw do
   resources :users, only: :create
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
+
+  #User-Properties
+  resources :user_properties do
+    get "/saved", on: :collection, action: :saved
+    get "/contacted", on: :collection, action: :contacted
+  end
 end

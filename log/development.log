@@ -12627,3 +12627,188 @@ Processing by PropertiesController#create as */*
 Completed 200 OK in 270ms (Views: 0.4ms | ActiveRecord: 17.3ms | Allocations: 44508)
 
 
+Started POST "/login" for 127.0.0.1 at 2023-10-14 16:24:39 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"test@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@mail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-14 21:24:40.247219"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 342ms (Views: 0.3ms | ActiveRecord: 13.3ms | Allocations: 30822)
+
+
+Started GET "/user_properties/saved" for 127.0.0.1 at 2023-10-14 16:26:05 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserPropertiesController#saved as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.4ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."saved" = $2[0m  [["user_id", 1], ["saved", true]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+Completed 200 OK in 171ms (Views: 2.6ms | ActiveRecord: 15.0ms | Allocations: 69860)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-14 16:26:41 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"hello@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"hello@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "hello@mail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-14 21:26:41.802362"], ["id", 2]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 273ms (Views: 0.1ms | ActiveRecord: 4.1ms | Allocations: 3572)
+
+
+Started GET "/user_properties/contacted" for 127.0.0.1 at 2023-10-14 16:26:51 -0500
+Processing by UserPropertiesController#contacted as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.4ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."contacted" = $2[0m  [["user_id", 2], ["contacted", true]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+Completed 200 OK in 116ms (Views: 1.8ms | ActiveRecord: 8.2ms | Allocations: 44231)
+
+
+Started GET "/user_properties/saved" for 127.0.0.1 at 2023-10-14 16:27:07 -0500
+Processing by UserPropertiesController#saved as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.2ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."saved" = $2[0m  [["user_id", 2], ["saved", true]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 1936)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-14 16:27:21 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"test@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "test@mail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-14 21:27:21.577593"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 294ms (Views: 0.1ms | ActiveRecord: 4.3ms | Allocations: 3599)
+
+
+Started GET "/user_properties/saved" for 127.0.0.1 at 2023-10-14 16:27:32 -0500
+Processing by UserPropertiesController#saved as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.3ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."saved" = $2[0m  [["user_id", 1], ["saved", true]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:4:in `map'
+Completed 200 OK in 19ms (Views: 2.4ms | ActiveRecord: 2.0ms | Allocations: 9774)
+
+
+Started GET "/user_properties/contacted" for 127.0.0.1 at 2023-10-14 16:27:46 -0500
+Processing by UserPropertiesController#contacted as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mUserProperty Load (0.2ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties" WHERE "user_properties"."user_id" = $1 AND "user_properties"."contacted" = $2[0m  [["user_id", 1], ["contacted", true]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/user_properties_controller.rb:10:in `map'
+Completed 200 OK in 19ms (Views: 2.0ms | ActiveRecord: 2.1ms | Allocations: 9774)
+
+
