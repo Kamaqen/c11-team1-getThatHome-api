@@ -41,7 +41,7 @@ end
       bathrooms: Faker::Number.between(from: 1, to: 3),
       property_type: Faker::Number.between(from: 0, to: 1),
       operation_type: Faker::Number.between(from: 0, to: 1),
-      url: "https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000",
+      urls: ["https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000"],
       description: Faker::Lorem.sentence,
       address: Faker::Address.full_address,
       pet_friendly: Faker::Boolean.boolean,

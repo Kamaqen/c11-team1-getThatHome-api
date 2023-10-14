@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_14_050946) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_14_161659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_050946) do
     t.integer "bathrooms"
     t.integer "property_type"
     t.integer "operation_type"
-    t.string "url"
+    t.string "urls"
     t.text "description"
     t.string "address"
     t.boolean "pet_friendly"
