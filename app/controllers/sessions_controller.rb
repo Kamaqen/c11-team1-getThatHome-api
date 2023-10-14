@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       user.regenerate_token
-      render json: { token: user.token, role: user.role }
+      render json: { token: user.token, role: user.role, id: user.id }
     else
       respond_unauthorized('Incorrect email or password')
     end
