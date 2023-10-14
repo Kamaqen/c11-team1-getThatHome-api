@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_11_020539) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_14_050946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_020539) do
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
+  create_table "user_properties", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.boolean "saved", default: false
+    t.boolean "contacted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_user_properties_on_property_id"
+    t.index ["user_id"], name: "index_user_properties_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -48,15 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_020539) do
     t.index ["token"], name: "index_users_on_token", unique: true
   end
 
-  create_table "users_properties", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "property_id"
-    t.boolean "is_contacted"
-    t.boolean "is_saved"
-    t.index ["property_id"], name: "index_users_properties_on_property_id"
-    t.index ["user_id", "property_id"], name: "index_users_properties_on_user_id_and_property_id", unique: true
-    t.index ["user_id"], name: "index_users_properties_on_user_id"
-  end
-
   add_foreign_key "properties", "users"
+  add_foreign_key "user_properties", "properties"
+  add_foreign_key "user_properties", "users"
 end

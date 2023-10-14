@@ -1,10 +1,7 @@
 class Property < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :users,
-                          join_table: 'users_properties',
-                          class_name: 'User',
-                          foreign_key: 'property_id',
-                          association_foreign_key: 'user_id'
+  has_many :user_properties
+  has_many :users, through: :user_properties
   
   validates  :property_type, :operation_type,:address, :bedrooms, :bathrooms, :area, :url, presence: true
   enum operation_type: { sale: 0, rent: 1 }
