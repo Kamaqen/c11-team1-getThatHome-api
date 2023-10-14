@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
   #User-Properties
   resources :user_properties do
-    get "/saved", on: :collection, action: :saved
-    get "/contacted", on: :collection, action: :contacted
+    get "/saved", on: :collection, action: :index_saved
+    get "/contacted", on: :collection, action: :index_contacted
+    post "/create_saved", on: :collection, action: :create_saved
+    post "/create_contacted", on: :collection, action: :create_contacted
   end
 end
