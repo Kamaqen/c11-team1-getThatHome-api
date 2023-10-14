@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_161659) do
     t.integer "bathrooms"
     t.integer "property_type"
     t.integer "operation_type"
-    t.string "urls"
+    t.jsonb "urls", default: {}, null: false
     t.text "description"
     t.string "address"
     t.boolean "pet_friendly"

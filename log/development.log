@@ -12156,3 +12156,474 @@ FOREIGN KEY ("property_id")
   [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
   [1m[36mProperty Load (0.6ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1 /* loading for pp */ LIMIT $2[0m  [["user_id", 2], ["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (27.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (29.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (99.0ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (100.4ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-14 17:06:25.756653', '2023-10-14 17:06:25.756656') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "urls" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "longitude" character varying, "latitude" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.9ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserProperties (20231014050946)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "user_properties" ("id" bigserial primary key, "user_id" bigint NOT NULL, "property_id" bigint NOT NULL, "saved" boolean DEFAULT FALSE, "contacted" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_4924e05fff"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_50c0d69da9"
+FOREIGN KEY ("property_id")
+  REFERENCES "properties" ("id")
+)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_user_id" ON "user_properties" ("user_id")[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_property_id" ON "user_properties" ("property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231014050946') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveUsersProperties (20231014161659)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[35mDROP TABLE "users_properties"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231014161659') RETURNING "version"[0m
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (26.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (25.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (142.9ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (104.1ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "urls" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "longitude" character varying, "latitude" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "user_properties" CASCADE[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "user_properties" ("id" bigserial primary key, "user_id" bigint NOT NULL, "property_id" bigint NOT NULL, "saved" boolean DEFAULT FALSE, "contacted" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_property_id" ON "user_properties" ("property_id")[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_user_id" ON "user_properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "user_properties" ADD CONSTRAINT "fk_rails_50c0d69da9"
+FOREIGN KEY ("property_id")
+  REFERENCES "properties" ("id")
+[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "user_properties" ADD CONSTRAINT "fk_rails_4924e05fff"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231014161659)[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231014050946),
+(20231011020539),
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-14 17:07:03.831841', '2023-10-14 17:07:03.831844') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '98ddeeaf17fbed6435b8990f4fab0f65f9835501', '2023-10-14 17:07:03.841324', '2023-10-14 17:07:03.841326') RETURNING "key"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "properties" CASCADE[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "urls" character varying, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "is_active" boolean, "longitude" character varying, "latitude" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "user_properties" CASCADE[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "user_properties" ("id" bigserial primary key, "user_id" bigint NOT NULL, "property_id" bigint NOT NULL, "saved" boolean DEFAULT FALSE, "contacted" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_property_id" ON "user_properties" ("property_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_user_id" ON "user_properties" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "user_properties" ADD CONSTRAINT "fk_rails_50c0d69da9"
+FOREIGN KEY ("property_id")
+  REFERENCES "properties" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "user_properties" ADD CONSTRAINT "fk_rails_4924e05fff"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20231014161659)[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20231014050946),
+(20231011020539),
+(20231011005736),
+(20231010181106),
+(20231010152555);[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-14 17:07:03.975092', '2023-10-14 17:07:03.975094') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2023-10-14 17:07:03.982903' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '98ddeeaf17fbed6435b8990f4fab0f65f9835501', '2023-10-14 17:07:03.987567', '2023-10-14 17:07:03.987569') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUserProperty Load (0.5ms)[0m  [1m[34mSELECT "user_properties".* FROM "user_properties"[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "test@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "testino"], ["phone_number", "555555"], ["role", 0], ["created_at", "2023-10-14 17:07:04.550814"], ["updated_at", "2023-10-14 17:07:04.550814"]]
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hello@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "hello@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "hello"], ["phone_number", "12334456"], ["role", 1], ["created_at", "2023-10-14 17:07:04.745168"], ["updated_at", "2023-10-14 17:07:04.745168"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jazmine_ankunding@parisian.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "jazmine_ankunding@parisian.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Fr. Farrah Kub"], ["phone_number", "1-346-799-5947"], ["role", 1], ["created_at", "2023-10-14 17:07:06.783149"], ["updated_at", "2023-10-14 17:07:06.783149"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "margareta@huel.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "margareta@huel.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Darnell Klein"], ["phone_number", "1-128-862-9098 x240"], ["role", 1], ["created_at", "2023-10-14 17:07:06.977754"], ["updated_at", "2023-10-14 17:07:06.977754"]]
+  [1m[36mTRANSACTION (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "karon@kuhn-bergstrom.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "karon@kuhn-bergstrom.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Rev. Claude Von"], ["phone_number", "(819) 256-6355 x249"], ["role", 1], ["created_at", "2023-10-14 17:07:07.173064"], ["updated_at", "2023-10-14 17:07:07.173064"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "august@koch-wehner.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "august@koch-wehner.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Kizzy Batz"], ["phone_number", "1-694-063-8114 x8014"], ["role", 1], ["created_at", "2023-10-14 17:07:07.369071"], ["updated_at", "2023-10-14 17:07:07.369071"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "piper@huel.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "piper@huel.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Aracelis Bayer"], ["phone_number", "388.120.8030 x455"], ["role", 1], ["created_at", "2023-10-14 17:07:07.563234"], ["updated_at", "2023-10-14 17:07:07.563234"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "raeann.brakus@bergstrom-schimmel.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "raeann.brakus@bergstrom-schimmel.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Audrey Daniel"], ["phone_number", "(365) 788-4093"], ["role", 0], ["created_at", "2023-10-14 17:07:07.757340"], ["updated_at", "2023-10-14 17:07:07.757340"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (10.0ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 3631], ["bedrooms", 1], ["bathrooms", 2], ["property_type", 1], ["operation_type", 0], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Impedit recusandae quisquam voluptatum."], ["address", "Apt. 757 50464 Ward Branch, Palmatown, MA 18159"], ["pet_friendly", true], ["area", "167"], ["property_price", 382163], ["maintenance_price", 791], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:07.827751"], ["updated_at", "2023-10-14 17:07:07.827751"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.9ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 1], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:07.855837"], ["updated_at", "2023-10-14 17:07:07.855837"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (1.8ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 1], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:07.863195"], ["updated_at", "2023-10-14 17:07:07.863195"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (1.9ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 8], ["property_id", 1], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:07.869643"], ["updated_at", "2023-10-14 17:07:07.869643"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 4843], ["bedrooms", 3], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Suscipit aspernatur laboriosam eveniet."], ["address", "Suite 363 1071 Ortiz Hollow, Carrolview, SD 13541"], ["pet_friendly", true], ["area", "190"], ["property_price", 237792], ["maintenance_price", 958], ["is_active", true], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:07.877530"], ["updated_at", "2023-10-14 17:07:07.877530"], ["user_id", 8]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 2], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:07.885192"], ["updated_at", "2023-10-14 17:07:07.885192"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (1.9ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 2], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:07.892583"], ["updated_at", "2023-10-14 17:07:07.892583"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 8], ["property_id", 2], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:07.899764"], ["updated_at", "2023-10-14 17:07:07.899764"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oswaldo_conroy@rice-stoltenberg.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "oswaldo_conroy@rice-stoltenberg.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Gilberto Abshire"], ["phone_number", "(994) 532-2048 x96271"], ["role", 0], ["created_at", "2023-10-14 17:07:08.092108"], ["updated_at", "2023-10-14 17:07:08.092108"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 2069], ["bedrooms", 5], ["bathrooms", 1], ["property_type", 1], ["operation_type", 1], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Maiores tenetur porro consectetur."], ["address", "Suite 601 234 Baumbach Cove, Rogahnfort, RI 95319"], ["pet_friendly", true], ["area", "67"], ["property_price", 234017], ["maintenance_price", 601], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.103229"], ["updated_at", "2023-10-14 17:07:08.103229"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 3], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.110613"], ["updated_at", "2023-10-14 17:07:08.110613"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 3], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.119951"], ["updated_at", "2023-10-14 17:07:08.119951"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 9], ["property_id", 3], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.127051"], ["updated_at", "2023-10-14 17:07:08.127051"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.6ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 4484], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 0], ["operation_type", 1], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Possimus facilis est voluptates."], ["address", "383 Kenda Stravenue, Lake Matt, NC 27381"], ["pet_friendly", true], ["area", "52"], ["property_price", 203220], ["maintenance_price", 802], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.135844"], ["updated_at", "2023-10-14 17:07:08.135844"], ["user_id", 9]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 4], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.143543"], ["updated_at", "2023-10-14 17:07:08.143543"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 4], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.150909"], ["updated_at", "2023-10-14 17:07:08.150909"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 9], ["property_id", 4], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.158120"], ["updated_at", "2023-10-14 17:07:08.158120"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jenice@little-mraz.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "jenice@little-mraz.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Araceli Schroeder"], ["phone_number", "514-712-8263 x7350"], ["role", 0], ["created_at", "2023-10-14 17:07:08.349919"], ["updated_at", "2023-10-14 17:07:08.349919"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 2139], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 0], ["operation_type", 1], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Est sed ab quo."], ["address", "Apt. 797 746 Jacobson Oval, Port Jocelynville, AR 54089"], ["pet_friendly", true], ["area", "50"], ["property_price", 78882], ["maintenance_price", 340], ["is_active", true], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.360863"], ["updated_at", "2023-10-14 17:07:08.360863"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 5], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.368468"], ["updated_at", "2023-10-14 17:07:08.368468"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 5], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.376128"], ["updated_at", "2023-10-14 17:07:08.376128"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (1.9ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 10], ["property_id", 5], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.383543"], ["updated_at", "2023-10-14 17:07:08.383543"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 2639], ["bedrooms", 2], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Incidunt ut corrupti id."], ["address", "46554 Robby Park, Connellyborough, MI 92175-8255"], ["pet_friendly", false], ["area", "172"], ["property_price", 445759], ["maintenance_price", 944], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.392031"], ["updated_at", "2023-10-14 17:07:08.392031"], ["user_id", 10]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (1.9ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 6], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.400159"], ["updated_at", "2023-10-14 17:07:08.400159"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.6ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 6], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.406812"], ["updated_at", "2023-10-14 17:07:08.406812"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 10], ["property_id", 6], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.414586"], ["updated_at", "2023-10-14 17:07:08.414586"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "asa@towne.test"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "asa@towne.test"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Bobbie Gleason PhD"], ["phone_number", "1-249-764-4947 x669"], ["role", 0], ["created_at", "2023-10-14 17:07:08.605927"], ["updated_at", "2023-10-14 17:07:08.605927"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 3005], ["bedrooms", 1], ["bathrooms", 2], ["property_type", 0], ["operation_type", 1], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Earum magni minus distinctio."], ["address", "822 Ondricka Plain, Eviabury, ME 90598-5391"], ["pet_friendly", true], ["area", "64"], ["property_price", 227279], ["maintenance_price", 439], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.613097"], ["updated_at", "2023-10-14 17:07:08.613097"], ["user_id", 11]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 7], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.621156"], ["updated_at", "2023-10-14 17:07:08.621156"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 7], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.628608"], ["updated_at", "2023-10-14 17:07:08.628608"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 11], ["property_id", 7], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.635680"], ["updated_at", "2023-10-14 17:07:08.635680"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 4636], ["bedrooms", 5], ["bathrooms", 3], ["property_type", 0], ["operation_type", 1], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Quae officiis neque modi."], ["address", "Apt. 602 867 Lupe Ridges, South Robby, IN 87983-4379"], ["pet_friendly", true], ["area", "92"], ["property_price", 97475], ["maintenance_price", 781], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.643546"], ["updated_at", "2023-10-14 17:07:08.643546"], ["user_id", 11]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.0ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 8], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.651007"], ["updated_at", "2023-10-14 17:07:08.651007"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (1.8ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 8], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.658555"], ["updated_at", "2023-10-14 17:07:08.658555"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.5ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 11], ["property_id", 8], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.664623"], ["updated_at", "2023-10-14 17:07:08.664623"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jacqui_white@sanford.example"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "jacqui_white@sanford.example"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Yong Rath"], ["phone_number", "670-661-9528 x40290"], ["role", 0], ["created_at", "2023-10-14 17:07:08.856210"], ["updated_at", "2023-10-14 17:07:08.856210"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 620], ["bedrooms", 1], ["bathrooms", 1], ["property_type", 1], ["operation_type", 0], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Minus numquam non laborum."], ["address", "Apt. 115 3840 Ebert Row, Port Arlieville, ME 80114"], ["pet_friendly", false], ["area", "193"], ["property_price", 108563], ["maintenance_price", 914], ["is_active", false], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.867153"], ["updated_at", "2023-10-14 17:07:08.867153"], ["user_id", 12]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 9], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.874512"], ["updated_at", "2023-10-14 17:07:08.874512"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 9], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.881905"], ["updated_at", "2023-10-14 17:07:08.881905"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 12], ["property_id", 9], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.889438"], ["updated_at", "2023-10-14 17:07:08.889438"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Create (2.2ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 1908], ["bedrooms", 4], ["bathrooms", 1], ["property_type", 0], ["operation_type", 0], ["urls", "[\"https://img.freepik.com/fotos-premium/moderna-acogedora-casa-estilo-lujoso-piscina-estacionamiento-generado-ai_859483-3864.jpg?w=2000\"]"], ["description", "Quidem nisi qui nihil."], ["address", "876 Schroeder Road, Stantonview, MT 71000-5572"], ["pet_friendly", true], ["area", "107"], ["property_price", 225271], ["maintenance_price", 607], ["is_active", true], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:07:08.897559"], ["updated_at", "2023-10-14 17:07:08.897559"], ["user_id", 12]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.4ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["property_id", 10], ["saved", true], ["contacted", true], ["created_at", "2023-10-14 17:07:08.904658"], ["updated_at", "2023-10-14 17:07:08.904658"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.3ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["property_id", 10], ["saved", false], ["contacted", true], ["created_at", "2023-10-14 17:07:08.912137"], ["updated_at", "2023-10-14 17:07:08.912137"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUserProperty Create (2.1ms)[0m  [1m[32mINSERT INTO "user_properties" ("user_id", "property_id", "saved", "contacted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 12], ["property_id", 10], ["saved", true], ["contacted", false], ["created_at", "2023-10-14 17:07:08.919470"], ["updated_at", "2023-10-14 17:07:08.919470"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (24.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_development"[0m
+  [1m[35m (26.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "get_that_home_api_test"[0m
+  [1m[35m (100.3ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (96.6ms)[0m  [1m[35mCREATE DATABASE "get_that_home_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-14 17:45:01.993543', '2023-10-14 17:45:01.993546') RETURNING "key"[0m
+Migrating to CreateProperties (20231010152555)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "properties" ("id" bigserial primary key, "rent_value" integer, "bedrooms" integer, "bathrooms" integer, "property_type" integer, "operation_type" integer, "urls" jsonb DEFAULT '{}' NOT NULL, "description" text, "address" character varying, "pet_friendly" boolean, "area" character varying, "property_price" integer, "maintenance_price" integer, "user_id" integer, "is_active" boolean, "longitude" character varying, "latitude" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010152555') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231010181106)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "token" character varying, "name" character varying, "phone_number" character varying, "role" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231010181106') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeUserIdReference (20231011005736)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "properties" DROP COLUMN "user_id"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "properties" ADD "user_id" bigint[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE INDEX "index_properties_on_user_id" ON "properties" ("user_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "properties" ADD CONSTRAINT "fk_rails_e41321a67c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011005736') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsersProperties (20231011020539)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "users_properties" ("user_id" bigint, "property_id" bigint, "is_contacted" boolean, "is_saved" boolean)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_user_id" ON "users_properties" ("user_id")[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_users_properties_on_property_id" ON "users_properties" ("property_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_properties_on_user_id_and_property_id" ON "users_properties" ("user_id", "property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231011020539') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserProperties (20231014050946)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "user_properties" ("id" bigserial primary key, "user_id" bigint NOT NULL, "property_id" bigint NOT NULL, "saved" boolean DEFAULT FALSE, "contacted" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_4924e05fff"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_50c0d69da9"
+FOREIGN KEY ("property_id")
+  REFERENCES "properties" ("id")
+)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_user_id" ON "user_properties" ("user_id")[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_user_properties_on_property_id" ON "user_properties" ("property_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231014050946') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveUsersProperties (20231014161659)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE "users_properties"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231014161659') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(4947947489468658570)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for 127.0.0.1 at 2023-10-14 12:46:56 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"essss@mail.com", "password"=>"[FILTERED]", "name"=>"Name.name", "phone_number"=>"Faker::PhoneNumber.phone_number", "role"=>1, "user"=>{"email"=>"essss@mail.com", "name"=>"Name.name", "phone_number"=>"Faker::PhoneNumber.phone_number", "role"=>1}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007f2670e67948>, params: {"email"=>"essss@mail.com", "password"=>"[FILTERED]", "name"=>"Name.name", "phone_number"=>"Faker::PhoneNumber.phone_number", "role"=>1, "controller"=>"users", "action"=>"create", "user"=>{"email"=>"essss@mail.com", "name"=>"Name.name", "phone_number"=>"Faker::PhoneNumber.phone_number", "role"=>1}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Exists? (6.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "essss@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "token", "name", "phone_number", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "essss@mail.com"], ["password_digest", "[FILTERED]"], ["token", "[FILTERED]"], ["name", "Name.name"], ["phone_number", "Faker::PhoneNumber.phone_number"], ["role", 1], ["created_at", "2023-10-14 17:46:57.788013"], ["updated_at", "2023-10-14 17:46:57.788013"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (10.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 201 Created in 412ms (Views: 0.5ms | ActiveRecord: 25.5ms | Allocations: 19997)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-10-14 12:47:17 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"email"=>"essss@mail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"essss@mail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "essss@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "essss@mail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "[FILTERED]"], ["updated_at", "2023-10-14 17:47:18.369684"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Completed 200 OK in 215ms (Views: 0.2ms | ActiveRecord: 13.6ms | Allocations: 3680)
+
+
+Started POST "/properties?toke" for 127.0.0.1 at 2023-10-14 12:47:31 -0500
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+[31mUnpermitted parameter: :urls. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007f2669fea8d0>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:21:in `block in create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:20:in `create'
+Completed 422 Unprocessable Entity in 2257ms (Views: 0.1ms | ActiveRecord: 7.9ms | Allocations: 308003)
+
+
+Started POST "/properties?toke" for 127.0.0.1 at 2023-10-14 12:50:13 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PropertiesController#create as */*
+  Parameters: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+[31mUnpermitted parameters: :urls, :toke, :property. Context: { controller: PropertiesController, action: create, request: #<ActionDispatch::Request:0x00007fb3c98a7d00>, params: {"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true, "toke"=>nil, "controller"=>"properties", "action"=>"create", "property"=>{"rent_value"=>15, "bedrooms"=>5, "bathrooms"=>5, "property_type"=>1, "operation_type"=>1, "urls"=>["www.login.com", "www.holamundo.com"], "description"=>"Faker::Lorem.sentence", "address"=>"Faker::Address.full_address", "pet_friendly"=>true, "area"=>"hola", "property_price"=>5000, "maintenance_price"=>5000, "is_active"=>true}} }[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `block in authenticate_token'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/properties_controller.rb:24:in `create'
+  [1m[36mProperty Create (3.7ms)[0m  [1m[32mINSERT INTO "properties" ("rent_value", "bedrooms", "bathrooms", "property_type", "operation_type", "urls", "description", "address", "pet_friendly", "area", "property_price", "maintenance_price", "is_active", "longitude", "latitude", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["rent_value", 15], ["bedrooms", 5], ["bathrooms", 5], ["property_type", 1], ["operation_type", 1], ["urls", "[\"www.login.com\",\"www.holamundo.com\"]"], ["description", "Faker::Lorem.sentence"], ["address", "Faker::Address.full_address"], ["pet_friendly", true], ["area", "hola"], ["property_price", 5000], ["maintenance_price", 5000], ["is_active", true], ["longitude", nil], ["latitude", nil], ["created_at", "2023-10-14 17:50:15.191801"], ["updated_at", "2023-10-14 17:50:15.191801"], ["user_id", 1]]
+  ↳ app/controllers/properties_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (6.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/properties_controller.rb:24:in `create'
+Completed 200 OK in 270ms (Views: 0.4ms | ActiveRecord: 17.3ms | Allocations: 44508)
+
+
