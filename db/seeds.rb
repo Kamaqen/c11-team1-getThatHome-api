@@ -55,7 +55,7 @@ end
 
     # Create UserProperty entries for saved and contacted properties
     UserProperty.create(user: user1, property: property, saved: true, contacted: true)
-    UserProperty.create(user: user2, property: property, saved: false, contacted: true)
+    UserProperty.create(user: user2, property: property, saved: true, contacted: false)
     UserProperty.create(user: user, property: property, saved: true, contacted: false)
   end
 end
