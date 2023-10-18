@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserPropertiesController < ApplicationController
   # GET /user_properties/saved
   def index_saved
@@ -44,6 +46,4 @@ class UserPropertiesController < ApplicationController
     user_property.update(contacted: true)
     render json: user_property
   end
-
 end
-

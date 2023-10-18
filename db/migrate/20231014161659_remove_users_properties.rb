@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveUsersProperties < ActiveRecord::Migration[7.1]
   def up
     drop_table :users_properties
@@ -11,6 +13,6 @@ class RemoveUsersProperties < ActiveRecord::Migration[7.1]
       t.boolean :is_saved
     end
 
-    add_index :users_properties, [:user_id, :property_id], unique: true
+    add_index :users_properties, %i[user_id property_id], unique: true
   end
 end
