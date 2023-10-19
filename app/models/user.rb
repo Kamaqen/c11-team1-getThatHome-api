@@ -16,6 +16,8 @@ class User < ApplicationRecord
   enum role: { landlord: 0, home_seeker: 1 }
 
   validates :name, :phone_number, :role, presence: true
+  validates :password, presence: true, confirmation: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password] }
 
   def invalidate_token
     update(token: nil)
