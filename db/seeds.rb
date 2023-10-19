@@ -102,7 +102,7 @@ property_urls = [
 ]
 
 # Create fixed users
-User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555', role: 0)
+user1 = User.create(email: 'test@mail.com', password: '123456', name: 'testino', phone_number: '555555', role: 0)
 user2 = User.create(email: 'hello@mail.com', password: '123456', name: 'hello', phone_number: '12334456', role: 1)
 user3 = User.create(email: 'testino@mail.com', password: '123456', name: 'test', phone_number: '12334456', role: 1)
 user4 = User.create(email: 'probino@mail.com', password: '123456', name: 'hello', phone_number: '12334456', role: 1)
@@ -112,8 +112,7 @@ fake_users = []
 fake_properties = []
 
 5.times do
-  user = create_user(1)
-  fake_users << user
+  create_property(user1, property_urls)
 end
 
 5.times do
