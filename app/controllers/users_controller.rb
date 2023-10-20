@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: :create
+  skip_before_action :authorize, only: %i[create index]
+
+  # GET /users
+
+  def index
+    users = User.all
+    render json: users, status: 200
+  end
 
   # POST /users
   def create
