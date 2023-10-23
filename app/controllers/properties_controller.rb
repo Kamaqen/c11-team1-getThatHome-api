@@ -53,7 +53,7 @@ class PropertiesController < ApplicationController
         longitude: params[:longitude],
         latitude: params[:latitude]
       )
-      render json: 'Property Record Updated Successfully!'
+      render json: property
     else
       render json: {
         error: 'Property Not Found'
