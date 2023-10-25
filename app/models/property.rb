@@ -2,7 +2,7 @@
 
 class Property < ApplicationRecord
   belongs_to :user
-  has_many :user_properties
+  has_many :user_properties, dependent: :destroy
   has_many :users, through: :user_properties
 
   validates :property_type, :operation_type, :address, :bedrooms, :bathrooms, :area, :urls, presence: true
