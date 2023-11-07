@@ -9,8 +9,7 @@ User.destroy_all
 
 # Method for create properties
 def create_property(user, property_urls)
-  Property.create!(
-    rent_value: Faker::Number.between(from: 500, to: 5000),
+  property_params = {
     bedrooms: Faker::Number.between(from: 1, to: 5),
     bathrooms: Faker::Number.between(from: 1, to: 3),
     property_type: Faker::Number.between(from: 0, to: 1),
@@ -20,11 +19,20 @@ def create_property(user, property_urls)
     address: Faker::Address.full_address,
     pet_friendly: Faker::Boolean.boolean,
     area: Faker::Number.between(from: 50, to: 200),
-    property_price: Faker::Number.between(from: 50_000, to: 500_000),
-    maintenance_price: Faker::Number.between(from: 100, to: 1000),
-    is_active: Faker::Boolean.boolean,
-    user:
-  )
+    user: user
+  }
+
+  if property_params[:operation_type] == 1  
+    property_params[:rent_value] = Faker::Number.between(from: 500, to: 5000)
+    property_params[:maintenance_price] = Faker::Number.between(from: 100, to: 1000)
+    property_params[:property_price] = "0"
+  elsif  property_params[:operation_type] == 0
+    property_params[:rent_value] = "0"
+    property_params[:maintenance_price] = "0"
+    property_params[:property_price] = Faker::Number.between(from: 10000, to: 100000)
+  end
+
+  Property.create!(property_params)
 end
 
 def create_user(role)
