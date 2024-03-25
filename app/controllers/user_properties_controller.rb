@@ -3,13 +3,13 @@
 class UserPropertiesController < ApplicationController
   # GET /user_properties/saved
   def index_saved
-    saved_properties = current_user.user_properties.where(saved: true).map(&:property)
+    saved_properties = current_user.user_properties.where(saved: true).order(created_at: :desc).map(&:property)
     render json: saved_properties
   end
 
   # GET /user_properties/contacted
   def index_contacted
-    contacted_properties = current_user.user_properties.where(contacted: true).map(&:property)
+    contacted_properties = current_user.user_properties.where(contacted: true).order(created_at: :desc).map(&:property)
     render json: contacted_properties
   end
 

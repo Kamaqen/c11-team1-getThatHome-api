@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.1.2'
+ruby '3.2.2'
 gem 'faker'
 gem "rdoc", ">= 6.6.3.1"
 
